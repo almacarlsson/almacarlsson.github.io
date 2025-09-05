@@ -1,169 +1,239 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="sv">
 <head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T2DNMPZD');</script>
-<!-- End Google Tag Manager -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Exempel på mer avancerad hemsida</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Growth Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #111;
-      --text: #f5f5f5;
-      --accent: #f1631d;
-      --secondary: #2a2a2a;
-      --radius: 12px;
+      --bg: #f5f5f5;        /* Ljus bakgrund */
+      --primary: #2b2b2b;   /* Mörk text */
+      --secondary: #4a4a4a; /* Sekundär text */
+      --muted: #7a7a7a;     /* Dämpad accent */
+      --highlight: #5a5f66; /* Highlight */
+    }
+    body.dark {
+      --bg: #1c1c1c;
+      --primary: #e0e0e0;
+      --secondary: #c0c0c0;
+      --muted: #6b6b6b;
+      --highlight: #4b5055;
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--primary);
+      line-height: 1.7;
+      transition: background 0.4s, color 0.4s;
+    }
 
     header {
-      background: var(--secondary);
-      padding: 20px;
       position: sticky;
       top: 0;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 100;
+      z-index: 1000;
+      background: linear-gradient(to bottom, rgba(245,245,245,0), rgba(245,245,245,0.15));
+      backdrop-filter: blur(6px);
+      transition: background 0.4s;
     }
-
-    header h1 { margin: 0; font-size: 1.5rem; }
-
+    body.dark header {
+      background: linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,0.15));
+    }
+    header h2 {
+      margin: 0;
+      letter-spacing: 1px;
+      color: var(--primary);
+    }
     nav a {
-      margin-left: 16px;
+      margin: 0 0.8rem;
       text-decoration: none;
-      color: var(--text);
-      transition: color .3s;
+      color: var(--secondary);
+      font-weight: 600;
+      transition: color 0.2s;
     }
-
-    nav a:hover { color: var(--accent); }
-
-    main {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 20px;
+    nav a:hover {
+      color: var(--primary);
+    }
+    button.toggle {
+      background: none;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    button.toggle:hover {
+      background: var(--primary);
+      color: var(--bg);
     }
 
     section {
-      margin-bottom: 60px;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(to bottom right, #222, #000);
-      border-radius: var(--radius);
-    }
-
-    .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 14px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: var(--secondary);
-      padding: 20px;
-      border-radius: var(--radius);
-      box-shadow: 0 4px 12px rgba(0,0,0,.4);
-      transition: transform .3s;
-    }
-
-    .card:hover { transform: translateY(-5px); }
-
-    .card img {
       width: 100%;
-      border-radius: var(--radius);
-      margin-bottom: 12px;
+      padding: 4rem 0;
+      margin: 0;
+      text-align: center;
+    }
+    section h1, section h2 {
+      text-transform: uppercase;
+      color: var(--primary);
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+    section p {
+      max-width: 800px;
+      margin: 0 auto 2rem auto;
+      color: var(--secondary);
+    }
+    .highlight {
+      background: var(--highlight);
+      color: var(--bg);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    section img {
+      width: 100vw;
+      height: auto;
+      display: block;
+      margin: 0;
+      border-radius: 0;
+      filter: grayscale(100%); /* svartvit effekt på bilder */
+    }
+
+    pre {
+      background: var(--secondary);
+      color: var(--bg);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      max-width: 800px;
+      margin: 0 auto 2rem auto;
+    }
+
+    canvas {
+      margin: 2rem auto;
+      max-width: 90%;
+      display: block;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      background: var(--secondary);
-      font-size: .9rem;
-      color: #aaa;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2DNMPZD"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  <header>
-    <h1>SITEMANAGER</h1>
-    <nav>
-      <a href="#hero">Start</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
-  </header>
 
-  <main>
-    <!-- Hero section -->
-    <section id="hero" class="hero">
-      <h2>Home</h2>
-      <p>The only thing we have to fear is fear itself</p>
-    </section>
+<header>
+  <h2>GROWTH PORTFOLIO</h2>
+  <nav>
+    <a href="#growth">Tillväxt</a>
+    <a href="#github">GitHub</a>
+    <a href="#ga4">GA4</a>
+    <a href="#charts">Charts</a>
+    <a href="#self">Självvärdering</a>
+  </nav>
+  <button class="toggle" onclick="toggleMode()">Dark Mode</button>
+</header>
 
-    <!-- Portfolio section -->
-    <section id="portfolio">
-      <h2>Portfolio</h2>
-      <div class="grid">
-        <div class="card">
-          <a href="https://exempel1.se" target="_blank">
-            <img src="https://picsum.photos/400/250?random=1" alt="Projekt 1" />
-          </a>
-          <h3>Projekt</h3>
-          <p>Kort beskrivning av projektet</p>
-        </div>
-        <div class="card">
-          <a href="https://mayadelorez.com" target="_blank">
-            <img src="https://picsum.photos/400/250?random=2" alt="Projekt 2" />
-          </a>
-          <h3>Events</h3>
-          <p>Kort beskrivning av events</p>
-        </div>
-        <div class="card">
-          <a href="https://exempel3.se" target="_blank">
-            <img src="https://picsum.photos/400/250?random=3" alt="Projekt 3" />
-          </a>
-          <h3>Om oss</h3>
-          <p>Kort beskrivning om oss</p>
-        </div>
-      </div>
-    </section>
+<section id="growth">
+  <h1>Tillväxtstrategier</h1>
+  <p>Här beskriver jag vad jag lärt mig om <span class="highlight">growth marketing</span> och olika strategier för att öka användartillväxt, retention och konvertering.</p>
+  <img src="https://picsum.photos/1920/600?grayscale" alt="Tillväxtstrategier">
+</section>
 
-    <!-- Kontakt section -->
-    <section id="kontakt">
-      <h2>Kontakt</h2>
-      <form>
-        <label for="namn">Namn</label><br>
-        <input type="text" id="namn" name="namn" style="width:100%;padding:8px;margin:8px 0;border-radius:var(--radius);border:none;"><br>
+<section id="github">
+  <h2>GitHub & Command Line</h2>
+  <p>Ett exempel på vanliga kommandon jag använt:</p>
+  <pre><code>git init
+git add .
+git commit -m "Första commit"
+git push origin main</code></pre>
+  <img src="https://picsum.photos/1920/500?grayscale&random=2" alt="GitHub exempelbild">
+</section>
 
-        <label for="meddelande">Meddelande</label><br>
-        <textarea id="meddelande" name="meddelande" rows="5" style="width:100%;padding:8px;margin:8px 0;border-radius:var(--radius);border:none;"></textarea><br>
+<section id="ga4">
+  <h2>Google Analytics 4 & GTM</h2>
+  <p>Exempel på hur GA4-taggen kan implementeras via Google Tag Manager:</p>
+  <pre><code>&lt;!-- Google Tag Manager --&gt;
+&lt;script&gt;(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXXXXX');&lt;/script&gt;</code></pre>
+  <img src="https://picsum.photos/1920/500?grayscale&random=3" alt="GA4 exempelbild">
+</section>
 
-        <button type="submit" style="background:var(--accent);color:#fff;padding:10px 20px;border:none;border-radius:var(--radius);cursor:pointer;">Skicka</button>
-      </form>
-    </section>
-  </main>
+<section id="charts">
+  <h2>Exempel på Chart.js</h2>
+  <canvas id="myChart"></canvas>
+</section>
 
-  <footer>
-    &copy; 2025 Min Avancerade Sida. Alla rättigheter förbehållna.
-  </footer>
+<section id="self">
+  <h2>Självvärdering</h2>
+  <p>Här reflekterar jag kring vad jag lärt mig hittills i kursen, mina styrkor och vad jag vill utveckla vidare i framtiden.</p>
+  <img src="https://picsum.photos/1920/500?grayscale&random=4" alt="Självvärdering bild">
+</section>
+
+<footer>
+  &copy; 2025 Mitt Growth Portfolio
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('myChart');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Mån', 'Tis', 'Ons', 'Tors', 'Fre'],
+    datasets: [{
+      label: 'Exempel-data (visningar)',
+      data: [10, 18, 6, 14, 20],
+      backgroundColor: 'rgba(75,75,75,0.7)',
+      borderColor: '#2b2b2b',
+      borderWidth: 1,
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom' }
+    }
+  }
+});
+
+function toggleMode() {
+  document.body.classList.toggle('dark');
+  const btn = document.querySelector('.toggle');
+  if (document.body.classList.contains('dark')) {
+    btn.textContent = "Light Mode";
+    localStorage.setItem('theme', 'dark');
+  } else {
+    btn.textContent = "Dark Mode";
+    localStorage.setItem('theme', 'light');
+  }
+}
+
+window.onload = () => {
+  const savedTheme = localStorage.getItem('theme');
+  const btn = document.querySelector('.toggle');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark');
+    btn.textContent = "Light Mode";
+  }
+};
+</script>
+
 </body>
 </html>
