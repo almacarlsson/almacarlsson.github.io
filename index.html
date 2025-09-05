@@ -1,239 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Growth Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f5f5f5;        /* Ljus bakgrund */
-      --primary: #2b2b2b;   /* Mörk text */
-      --secondary: #4a4a4a; /* Sekundär text */
-      --muted: #7a7a7a;     /* Dämpad accent */
-      --highlight: #5a5f66; /* Highlight */
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alma Carlsson – Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            boldred: '#d62828',
+            dark: '#0b0b0b',
+            light: '#f3f3f3'
+          },
+          fontFamily: {
+            sans: ['Arial','Helvetica','sans-serif']
+          }
+        }
+      }
     }
-    body.dark {
-      --bg: #1c1c1c;
-      --primary: #e0e0e0;
-      --secondary: #c0c0c0;
-      --muted: #6b6b6b;
-      --highlight: #4b5055;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--primary);
-      line-height: 1.7;
-      transition: background 0.4s, color 0.4s;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      background: linear-gradient(to bottom, rgba(245,245,245,0), rgba(245,245,245,0.15));
-      backdrop-filter: blur(6px);
-      transition: background 0.4s;
-    }
-    body.dark header {
-      background: linear-gradient(to bottom, rgba(28,28,28,0), rgba(28,28,28,0.15));
-    }
-    header h2 {
-      margin: 0;
-      letter-spacing: 1px;
-      color: var(--primary);
-    }
-    nav a {
-      margin: 0 0.8rem;
-      text-decoration: none;
-      color: var(--secondary);
-      font-weight: 600;
-      transition: color 0.2s;
-    }
-    nav a:hover {
-      color: var(--primary);
-    }
-    button.toggle {
-      background: none;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    button.toggle:hover {
-      background: var(--primary);
-      color: var(--bg);
-    }
-
-    section {
-      width: 100%;
-      padding: 4rem 0;
-      margin: 0;
-      text-align: center;
-    }
-    section h1, section h2 {
-      text-transform: uppercase;
-      color: var(--primary);
-      letter-spacing: 2px;
-      margin-bottom: 1rem;
-    }
-    section p {
-      max-width: 800px;
-      margin: 0 auto 2rem auto;
-      color: var(--secondary);
-    }
-    .highlight {
-      background: var(--highlight);
-      color: var(--bg);
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-    }
-
-    section img {
-      width: 100vw;
-      height: auto;
-      display: block;
-      margin: 0;
-      border-radius: 0;
-      filter: grayscale(100%); /* svartvit effekt på bilder */
-    }
-
-    pre {
-      background: var(--secondary);
-      color: var(--bg);
-      padding: 1rem;
-      border-radius: 8px;
-      overflow-x: auto;
-      max-width: 800px;
-      margin: 0 auto 2rem auto;
-    }
-
-    canvas {
-      margin: 2rem auto;
-      max-width: 90%;
-      display: block;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-  </style>
+  </script>
 </head>
-<body>
 
-<header>
-  <h2>GROWTH PORTFOLIO</h2>
-  <nav>
-    <a href="#growth">Tillväxt</a>
-    <a href="#github">GitHub</a>
-    <a href="#ga4">GA4</a>
-    <a href="#charts">Charts</a>
-    <a href="#self">Självvärdering</a>
-  </nav>
-  <button class="toggle" onclick="toggleMode()">Dark Mode</button>
-</header>
+<body class="bg-light text-dark font-sans antialiased">
 
-<section id="growth">
-  <h1>Tillväxtstrategier</h1>
-  <p>Här beskriver jag vad jag lärt mig om <span class="highlight">growth marketing</span> och olika strategier för att öka användartillväxt, retention och konvertering.</p>
-  <img src="https://picsum.photos/1920/600?grayscale" alt="Tillväxtstrategier">
-</section>
+  <!-- HERO -->
+  <header class="relative w-full">
+    <img src="/images/hero.jpg" alt="Hero image" class="w-full h-[80vh] object-cover" />
+    <div class="absolute top-10 left-10">
+      <h1 class="text-6xl md:text-8xl font-extrabold uppercase text-boldred">PORTFOLIO</h1>
+      <p class="text-lg md:text-xl text-white mt-2">GROWTH MARKETER<br>2025</p>
+    </div>
+    <div class="absolute bottom-10 right-10 text-white text-right">
+      <p class="text-sm">alma.carlsson@gmail.com</p>
+      <p class="text-sm">@almacarlsson</p>
+    </div>
+  </header>
 
-<section id="github">
-  <h2>GitHub & Command Line</h2>
-  <p>Ett exempel på vanliga kommandon jag använt:</p>
-  <pre><code>git init
-git add .
-git commit -m "Första commit"
-git push origin main</code></pre>
-  <img src="https://picsum.photos/1920/500?grayscale&random=2" alt="GitHub exempelbild">
-</section>
+  <!-- ABOUT -->
+  <section class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto px-6 py-16 items-center">
+    <img src="/images/about.jpg" alt="About me" class="w-full object-cover" />
+    <div>
+      <h2 class="text-4xl font-bold uppercase">About Me</h2>
+      <p class="mt-4 text-lg">
+        Jag började min resa inom marknadsföring med fokus på experiment, analys och digital tillväxt.
+        Idag kombinerar jag kreativitet med data för att driva projekt framåt och skapa verklig effekt.
+      </p>
+    </div>
+  </section>
 
-<section id="ga4">
-  <h2>Google Analytics 4 & GTM</h2>
-  <p>Exempel på hur GA4-taggen kan implementeras via Google Tag Manager:</p>
-  <pre><code>&lt;!-- Google Tag Manager --&gt;
-&lt;script&gt;(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-XXXXXXX');&lt;/script&gt;</code></pre>
-  <img src="https://picsum.photos/1920/500?grayscale&random=3" alt="GA4 exempelbild">
-</section>
+  <!-- THREE LINKS -->
+  <section class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6 py-16 text-center">
+    <a href="me-and-marketing/" class="group">
+      <img src="/images/me-marketing.jpg" alt="Me and Marketing" class="w-full h-64 object-cover" />
+      <h3 class="mt-3 text-xl font-bold uppercase text-boldred group-hover:underline">Me and Marketing</h3>
+    </a>
+    <a href="growth-marketing/" class="group">
+      <img src="/images/growth-marketing.jpg" alt="Growth Marketing" class="w-full h-64 object-cover" />
+      <h3 class="mt-3 text-xl font-bold uppercase text-boldred group-hover:underline">Growth Marketing</h3>
+    </a>
+    <a href="contact/" class="group">
+      <img src="/images/contact.jpg" alt="Contact" class="w-full h-64 object-cover" />
+      <h3 class="mt-3 text-xl font-bold uppercase text-boldred group-hover:underline">Contact</h3>
+    </a>
+  </section>
 
-<section id="charts">
-  <h2>Exempel på Chart.js</h2>
-  <canvas id="myChart"></canvas>
-</section>
+  <!-- CONTACT FORM -->
+  <section class="bg-light py-16 max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-center">
+    <div>
+      <h2 class="text-3xl font-bold uppercase text-boldred">Kontakta mig</h2>
+      <p class="mt-2">Skriv några rader om du vill snacka jobb, praktik eller samarbeten.</p>
+      <form action="#" method="post" class="mt-6 grid gap-4">
+        <input type="text" name="name" placeholder="Namn" required class="p-3 border rounded" />
+        <input type="email" name="email" placeholder="E-post" required class="p-3 border rounded" />
+        <textarea name="message" rows="4" placeholder="Meddelande" required class="p-3 border rounded"></textarea>
+        <button type="submit" class="bg-boldred text-white font-bold py-3 rounded hover:bg-red-700 transition">Skicka</button>
+      </form>
+    </div>
+    <img src="/images/workwithme.jpg" alt="Work with me" class="w-full h-full object-cover" />
+  </section>
 
-<section id="self">
-  <h2>Självvärdering</h2>
-  <p>Här reflekterar jag kring vad jag lärt mig hittills i kursen, mina styrkor och vad jag vill utveckla vidare i framtiden.</p>
-  <img src="https://picsum.photos/1920/500?grayscale&random=4" alt="Självvärdering bild">
-</section>
+  <!-- WORK WITH ME -->
+  <section class="bg-dark text-white flex items-center justify-between px-6 py-20">
+    <h2 class="text-5xl md:text-7xl font-extrabold uppercase text-boldred">Work With Me</h2>
+  </section>
 
-<footer>
-  &copy; 2025 Mitt Growth Portfolio
-</footer>
+  <footer class="bg-dark text-white text-sm py-6 text-center">
+    <p>© <span id="year"></span> Alma Carlsson – Growth Marketing Portfolio</p>
+  </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-const ctx = document.getElementById('myChart');
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Mån', 'Tis', 'Ons', 'Tors', 'Fre'],
-    datasets: [{
-      label: 'Exempel-data (visningar)',
-      data: [10, 18, 6, 14, 20],
-      backgroundColor: 'rgba(75,75,75,0.7)',
-      borderColor: '#2b2b2b',
-      borderWidth: 1,
-      borderRadius: 6
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: { position: 'bottom' }
-    }
-  }
-});
-
-function toggleMode() {
-  document.body.classList.toggle('dark');
-  const btn = document.querySelector('.toggle');
-  if (document.body.classList.contains('dark')) {
-    btn.textContent = "Light Mode";
-    localStorage.setItem('theme', 'dark');
-  } else {
-    btn.textContent = "Dark Mode";
-    localStorage.setItem('theme', 'light');
-  }
-}
-
-window.onload = () => {
-  const savedTheme = localStorage.getItem('theme');
-  const btn = document.querySelector('.toggle');
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark');
-    btn.textContent = "Light Mode";
-  }
-};
-</script>
-
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
