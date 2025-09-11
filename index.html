@@ -135,7 +135,7 @@
     <div class="hero__scrim"></div>
     <div class="hero__content">
       <h1 class="title">PORTFOLIO</h1>
-      <p class="subtitle">Fresh. Bold. Yours.</p>
+      <p class="subtitle">Alma Carlsson</p>
     </div>
     <div class="scroll-cue">Scroll ↓</div>
   </header>
@@ -144,7 +144,7 @@
   <section id="about">
     <div class="container">
       <h2>About Me</h2>
-      <p>Write a short, punchy introduction here — who you are, what you love building, and the kinds of problems you solve.</p>
+      <p>I’m Alma, a curious and driven growth marketing student at Berghs School of Communication. I love experimenting, analyzing data, and finding creative ways to make ideas grow. My background is a mix of creativity and strategy, and I’m passionate about turning insights into action — whether that’s improving a user experience or testing bold new campaigns.</p>
     </div>
   </section>
 
@@ -173,14 +173,14 @@
             <p class="card__text">Bounce rate ↓12% after redesign + faster checkout.</p>
           </div>
         </article>
-        <!-- Project 3 -->
+        <!-- Linkedin -->
         <article class="card">
-          <a class="card__link" href="https://linktr.ee/yourname" target="_blank" rel="noopener noreferrer" aria-label="Open Project 3 link in a new tab">
+          <a class="card__link" href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" rel="noopener noreferrer" aria-label="Open Project 3 link in a new tab">
             <div class="card__img"><img src="images/project3.jpg" alt="Project 3 preview" /></div>
           </a>
           <div class="card__body">
-            <h3 class="card__title"><a href="https://linktr.ee/yourname" target="_blank" rel="noopener noreferrer">Campaign Reel — Project Three</a></h3>
-            <p class="card__text">30s video reel showcasing highlights (hosted externally).</p>
+            <h3 class="card__title"><a href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" rel="noopener noreferrer">Alma Carlsson - Linkedin</a></h3>
+            <p class="card__text">Don´t forget to add me on Linkedin</p>
           </div>
         </article>
       </div>
@@ -196,12 +196,12 @@
         <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
         <div><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell me about your project" required></textarea></div>
         <button class="btn" type="submit">Send Message</button>
-        <p class="note">This demo form uses client‑side handling. Hook it to your backend, Formspree, or Netlify Forms when you’re ready.</p>
+        <p class="note">If you want to be happy, be</p>
       </form>
     </div>
   </section>
 
-  <footer>© <span id="year"></span> Your Name — All rights reserved.</footer>
+  <footer>© <span id="year"></span> Alma Carlsson — All rights reserved.</footer>
 
   <script>
     // Active section indicator
@@ -219,13 +219,37 @@
     }, {rootMargin:'-45% 0px -45% 0px', threshold:0});
     sections.forEach(s=>obs.observe(s));
 
-    // Contact form demo handler
-    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+    // =====================
+    // UPDATED CONTACT FORM HANDLER
+    // =====================
+    document.getElementById('contactForm').addEventListener('submit', async (e)=>{
       e.preventDefault();
       const form = e.currentTarget;
       if(!form.reportValidity()) return;
-      alert('Thanks! Your message has been captured locally. Connect a backend to actually send it.');
-      form.reset();
+
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value
+      };
+
+      try {
+        const response = await fetch("http://localhost:3000/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          alert("✅ Message sent successfully!");
+          form.reset();
+        } else {
+          alert("❌ There was a problem sending your message.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("⚠️ Could not connect to server. Is it running?");
+      }
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -255,7 +279,6 @@
       }
     }
 
-    // Init
     let current = getPreferredTheme();
     applyTheme(current);
 
