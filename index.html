@@ -6,15 +6,16 @@
   <title>Portfolio — Bold Landing</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PMWFNHDC25"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-PMWFNHDC25');
   </script>
+
   <style>
     /* =====================
        THEME VARIABLES
@@ -30,8 +31,6 @@
       --hero:url('images/1.jpg');
       --pill-bg:rgba(255,255,255,.02);
       --pill-border:#2a2f36;
-      --input-bg:#10141a;
-      --input-border:#262c35;
       --btn-bg:var(--fg);
       --btn-fg:#0b0d10;
       --scrim:rgba(0,0,0,.35);
@@ -47,8 +46,6 @@
       --border:#e6eaf0;
       --pill-bg:rgba(0,0,0,.04);
       --pill-border:#d7dde6;
-      --input-bg:#ffffff;
-      --input-border:#d7dde6;
       --btn-bg:#0d1117;
       --btn-fg:#ffffff;
       --scrim:rgba(255,255,255,.25);
@@ -67,12 +64,15 @@
     img{max-width:100%; display:block}
 
     /* NAV */
-    .nav{position:fixed; inset-inline:0; top:0; z-index:30; display:flex; justify-content:center; backdrop-filter:saturate(180%) blur(10px);} 
+    .nav{position:fixed; inset-inline:0; top:0; z-index:30; display:flex; justify-content:center; backdrop-filter:saturate(180%) blur(10px);}
     .nav__inner{width:100%; max-width:var(--max); display:flex; align-items:center; gap:12px; padding:14px 20px;}
     .brand{font-weight:800; letter-spacing:.04em}
     .nav__spacer{flex:1}
-    .pill{border:1px solid var(--pill-border); padding:8px 14px; border-radius:999px; background:var(--pill-bg);} 
+    .pill{border:1px solid var(--pill-border); padding:8px 14px; border-radius:999px; background:var(--pill-bg);}
     .nav__links{display:flex; gap:8px; flex-wrap:wrap}
+
+    /* Active section indicator */
+    .nav a.active{outline:2px solid var(--accent); outline-offset:2px}
 
     /* Theme toggle */
     .toggle{display:inline-flex; align-items:center; gap:8px; cursor:pointer; user-select:none}
@@ -80,19 +80,18 @@
     .toggle button:focus{outline:2px solid var(--accent); outline-offset:2px}
 
     /* HERO */
-    .hero{position:relative; height:100vh; display:grid; place-items:center; overflow:hidden; border-bottom:1px solid var(--border);} 
-    .hero__bg{position:absolute; inset:0; background:#000 var(--hero) center/cover no-repeat; filter:contrast(1.05) brightness(.85); transform:scale(1.02);} 
-    :root[data-theme="light"] .hero__bg{filter:contrast(1.02) brightness(.95);} 
-    .hero__scrim{position:absolute; inset:0; background:var(--scrim);} 
+    .hero{position:relative; height:100vh; display:grid; place-items:center; overflow:hidden; border-bottom:1px solid var(--border);}
+    .hero__bg{position:absolute; inset:0; background:#000 var(--hero) center/cover no-repeat; filter:contrast(1.05) brightness(.85); transform:scale(1.02);}
+    :root[data-theme="light"] .hero__bg{filter:contrast(1.02) brightness(.95);}
+    .hero__scrim{position:absolute; inset:0; background:var(--scrim);}
     .hero__content{position:relative; z-index:1; width:min(92vw, var(--max)); text-align:left;}
     .title{margin:0; line-height:.85; font-weight:900; letter-spacing:-.02em; font-size:clamp(60px, 18vw, 220px); text-transform:uppercase;}
-    .subtitle{margin:12px 0 0 0.1em; color:var(--muted); font-weight:600; font-size:clamp(18px, 3vw, 28px);} /* slightly right to sit under P */
+    .subtitle{margin:12px 0 0 0.1em; color:var(--muted); font-weight:600; font-size:clamp(18px, 3vw, 28px);}
     .scroll-cue{position:absolute; bottom:28px; left:50%; transform:translateX(-50%); color:var(--muted); font-size:14px;}
 
     /* LAYOUT */
     section{padding:80px 20px}
     .container{max-width:var(--max); margin-inline:auto}
-
     #about p{color:var(--muted)}
 
     /* PROJECTS */
@@ -108,19 +107,41 @@
     .card__text{margin:0; color:var(--muted)}
     .card__link{display:block}
 
-    /* CONTACT (centered) */
+    /* CONTACT (simple) */
     #contact .container{display:flex; justify-content:center; align-items:center;}
-    form{display:grid; gap:20px; width:100%; max-width:900px; margin:auto; text-align:left;}
-    form > div, form > button, form > p{width:100%;}
-    label{display:block; margin-bottom:6px;}
-    input, textarea{display:block; width:100%; padding:20px 22px; font-size:1.05rem; border-radius:14px; border:1px solid var(--input-border); background:var(--input-bg); color:var(--fg)}
-    textarea{min-height:180px; resize:vertical}
-    .btn{cursor:pointer; border:none; padding:18px 24px; font-size:1.1rem; border-radius:14px; background:var(--btn-bg); color:var(--btn-fg); font-weight:700; letter-spacing:.5px}
-    .note{text-align:center; color:var(--muted); font-size:14px}
+    .contact-card{
+      width:100%;
+      max-width:900px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:24px;
+      text-align:center;
+    }
+    .contact-card p{color:var(--muted); margin:10px 0 0}
+    .contact-actions{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;}
+    .btn{
+      display:inline-block;
+      cursor:pointer;
+      border:none;
+      padding:12px 16px;
+      border-radius:999px;
+      background:var(--btn-bg);
+      color:var(--btn-fg);
+      font-weight:700;
+      letter-spacing:.2px
+    }
+    .btn.secondary{
+      background:transparent;
+      color:inherit;
+      border:1px solid var(--pill-border);
+    }
 
     footer{padding:40px 20px; border-top:1px solid var(--border); color:var(--muted); text-align:center}
   </style>
 </head>
+
 <body>
   <!-- NAV -->
   <nav class="nav">
@@ -132,7 +153,7 @@
         <a href="#projects" class="pill">Projects</a>
         <a href="#contact" class="pill">Contact</a>
         <span class="toggle" aria-label="Theme toggle">
-          <button id="themeToggle" type="button" aria-pressed="false" title="Toggle light/dark">🌙 Dark</button>
+          <button id="themeToggle" type="button" aria-pressed="false" title="Toggle light/dark">Dark</button>
         </span>
       </div>
     </div>
@@ -164,49 +185,53 @@
       <div class="grid">
         <!-- CV -->
         <article class="card">
-          <a class="card__link" href="https://www.canva.com/design/DAFxn3K-Zyw/WSuRFWIO-YxN6qSiBh9ocg/view?utm_content=DAFxn3K-Zyw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h29c5f5b05d" target="_blank" rel="noopener noreferrer" aria-label="Open Case 1 in a new tab">
-            <div class="card__img"><img src="images/project1.jpg" alt="Project 1 preview" /></div>
+          <a class="card__link" href="https://www.canva.com/design/DAFxn3K-Zyw/WSuRFWIO-YxN6qSiBh9ocg/view?utm_content=DAFxn3K-Zyw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h29c5f5b05d" target="_blank" rel="noopener noreferrer" aria-label="Open CV in a new tab">
+            <div class="card__img"><img src="images/project1.jpg" alt="CV preview" /></div>
           </a>
           <div class="card__body">
             <h3 class="card__title"><a href="https://www.canva.com/design/DAFxn3K-Zyw/WSuRFWIO-YxN6qSiBh9ocg/view?utm_content=DAFxn3K-Zyw&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h29c5f5b05d" target="_blank" rel="noopener noreferrer">CV Alma Carlsson</a></h3>
             <p class="card__text">Work experience and life priorities</p>
           </div>
         </article>
+
         <!-- Looker studio -->
         <article class="card">
-          <a class="card__link" href="https://lookerstudio.google.com/s/pIuEpegwIHE" target="_blank" rel="noopener noreferrer" aria-label="Open Case 2 in a new tab">
-            <div class="card__img"><img src="images/project2.jpg" alt="Project 2 preview" /></div>
+          <a class="card__link" href="https://lookerstudio.google.com/s/pIuEpegwIHE" target="_blank" rel="noopener noreferrer" aria-label="Open Looker Studio demo in a new tab">
+            <div class="card__img"><img src="images/project2.jpg" alt="Looker Studio preview" /></div>
           </a>
           <div class="card__body">
             <h3 class="card__title"><a href="https://lookerstudio.google.com/s/pIuEpegwIHE" target="_blank" rel="noopener noreferrer">UX Study — Project Two</a></h3>
             <p class="card__text">UX Report last 30 days - demo page.</p>
           </div>
         </article>
+
         <!-- Linkedin -->
         <article class="card">
-          <a class="card__link" href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" rel="noopener noreferrer" aria-label="Open Project 3 link in a new tab">
-            <div class="card__img"><img src="images/project3.jpg" alt="Project 3 preview" /></div>
+          <a class="card__link" href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile in a new tab">
+            <div class="card__img"><img src="images/project3.jpg" alt="LinkedIn preview" /></div>
           </a>
           <div class="card__body">
-            <h3 class="card__title"><a href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" rel="noopener noreferrer">Alma Carlsson - Linkedin</a></h3>
-            <p class="card__text">Don´t forget to add me on Linkedin</p>
+            <h3 class="card__title"><a href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" rel="noopener noreferrer">Alma Carlsson — LinkedIn</a></h3>
+            <p class="card__text">Connect with me on LinkedIn</p>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTACT (no form) -->
   <section id="contact">
     <div class="container">
-      <form id="contactForm" novalidate>
-        <h2 style="text-align:center">Contact</h2>
-        <div><label for="name">Hejhej</label><input id="name" name="name" type="text" placeholder="Your name" required /></div>
-        <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
-        <div><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell me about your project" required></textarea></div>
-        <button class="btn" type="submit">Send Message</button>
-        <p class="note">If you want to be happy, be happy</p>
-      </form>
+      <div class="contact-card">
+        <h2>Contact</h2>
+        <p>Reach out via email or LinkedIn.</p>
+        <div class="contact-actions">
+          <!-- Update email if needed -->
+          <a class="btn" href="mailto:alma.carlsson@gmail.com">Email me</a>
+          <a class="btn secondary" href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" rel="noopener noreferrer">Message on LinkedIn</a>
+        </div>
+        <p style="margin-top:16px; font-size:14px;">If you want to be happy, be happy</p>
+      </div>
     </div>
   </section>
 
@@ -228,44 +253,9 @@
     }, {rootMargin:'-45% 0px -45% 0px', threshold:0});
     sections.forEach(s=>obs.observe(s));
 
-    // =====================
-    // UPDATED CONTACT FORM HANDLER
-    // =====================
-    document.getElementById('contactForm').addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      const form = e.currentTarget;
-      if(!form.reportValidity()) return;
-
-      const data = {
-        name: form.name.value,
-        email: form.email.value,
-        message: form.message.value
-      };
-
-      try {
-        const response = await fetch("http://localhost:3000/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
-
-        if (response.ok) {
-          alert("✅ Message sent successfully!");
-          form.reset();
-        } else {
-          alert("❌ There was a problem sending your message.");
-        }
-      } catch (err) {
-        console.error(err);
-        alert("⚠️ Could not connect to server. Is it running?");
-      }
-    });
-
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // =====================
-    // THEME TOGGLE LOGIC
-    // =====================
+    // Theme toggle logic
     const root = document.documentElement;
     const storageKey = 'theme-preference';
 
@@ -280,11 +270,11 @@
       if(mode === 'light'){
         root.setAttribute('data-theme','light');
         toggleBtn.setAttribute('aria-pressed','true');
-        toggleBtn.textContent = '☀️ Light';
+        toggleBtn.textContent = 'Light';
       } else {
         root.removeAttribute('data-theme');
         toggleBtn.setAttribute('aria-pressed','false');
-        toggleBtn.textContent = '🌙 Dark';
+        toggleBtn.textContent = 'Dark';
       }
     }
 
