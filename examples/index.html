@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-T2DNMPZD');</script>
-<!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--CSS Instructions-->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PMWFNHDC25"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PMWFNHDC25');
+    </script>
+
+    <!-- CSS -->
     <link href="https://jesperastrom.github.io/resources/css/index.css" type="text/css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,35 +21,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>Web Analytics Demo</title>
     <link rel="stylesheet" href="css/styles.css">
-    
-    <!-- Initialize dataLayer -->
-    <script>
-        window.dataLayer = window.dataLayer || [];
-    </script>
-    
-    <!-- Analytics Script (load before page content) -->
-    <script src="js/analytics.js"></script>
+
+    <!-- Optional: your own analytics logic -->
+    <script src="js/analytics.js" defer></script>
 </head>
+
 <body>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T2DNMPZD"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
     <header>
-        <!--Breadcrumbs Start-->
         <ul class="breadcrumb">
             <li><a href="#">Home</a></li>
         </ul>
-        <!--Breadcrumbs End-->
     </header>
+
     <main>
         <section id="top" class="content">
             <h1>Demo shop</h1>
         </section>
+
         <section class="content">
-            <p>This page demonstrates how to use the dataLayer for web analytics.</p>
-            <p>Open the Console and check the dataLayer as you click the links and buttons below this text.</p>
+            <p>This page demonstrates how to use web analytics.</p>
+            <p>Open the Console and test events as you click links and buttons.</p>
         </section>
+
         <nav>
             <ul>
                 <li><a href="#" id="home-link">Home</a></li>
@@ -55,10 +51,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <li><a href="#" id="contact-link">Contact</a></li>
             </ul>
         </nav>
+
         <section id="hero" class="content">
-             <button id="cta-button">Click Me!</button>
+            <button id="cta-button">Click Me!</button>
         </section>
-        
+
         <section id="products" class="content">
             <h2>Products</h2>
             <div class="product-grid">
@@ -67,11 +64,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <p>$19.99</p>
                     <button class="add-to-cart">Add to Cart</button>
                 </div>
+
                 <div class="product" data-product-id="456" data-product-name="Product B" data-product-price="29.99">
                     <h3>Product B</h3>
                     <p>$29.99</p>
                     <button class="add-to-cart">Add to Cart</button>
                 </div>
+
                 <div class="product" data-product-id="789" data-product-name="Product C" data-product-price="39.99">
                     <h3>Product C</h3>
                     <p>$39.99</p>
@@ -80,9 +79,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
         </section>
     </main>
-    
+
     <footer>
         <p>&copy; 2025 Web Analytics Demo</p>
     </footer>
+
 </body>
 </html>
