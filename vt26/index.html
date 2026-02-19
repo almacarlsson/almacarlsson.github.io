@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Character encoding so the browser knows how to read text -->
+  <meta charset="utf-8" />
+
+  <!-- Makes the layout scale nicely on phones/tablets -->
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- Text shown in the browser tab -->
+  <title>Advice Slip — Tiny API Demo</title>
+
+  <style>
+    /* 
+      color-scheme lets the browser choose good default colors
+      for light/dark mode (if the user has dark mode enabled).
+    */
+    :root { color-scheme: light dark; }
+
+    /* Basic page layout: center the content */
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      display: grid;
+      place-items: center;           /* centers horizontally + vertically */
+      min-height: 100vh;             /* full screen height */
+      padding: 24px;
+    }
+
+    /* A "card" container for the app */
+    .card {
+      width: min(720px, 100%);       /* max 720px, but shrink on small screens */
+      border: 1px solid rgba(120,120,120,.35);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    }
+
+    h1 { margin: 0 0 12px; font-size: 18px; opacity: .9; }
+
+    /* Big text for the advice */
+    .advice {
+      font-size: clamp(18px, 2.5vw, 28px); /* responsive font size */
+      line-height: 1.25;
+      margin: 0;
+      white-space: pre-wrap;              /* keeps line breaks if any */
+    }
+
+    /* Smaller text for slip id etc */
+    .meta { margin-top: 10px; font-size: 12px; opacity: .7; }
+
+    /* Row of buttons */
+    .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+
+    /* Button styling */
+    button {
+      border: 1px solid rgba(120,120,120,.45);
+      background: transparent;
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Disabled buttons look inactive */
+    button:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* Status text area (loading, copied, errors) */
+    .status {
+      margin-top: 10px;
+      font-size: 13px;
+      opacity: .8;
+      min-height: 1.2em; /* ensures the layout doesn't jump when status changes */
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <h1>Advice Slip API</h1>
+
+    <!-- This is where the advice text will be displayed -->
+    <p id="advice" class="advice">Click “New advice” to fetch one.</p>
+
+    <!-- This is where we show extra info (like the slip ID) -->
+    <div id="meta" class="meta"></div>
+
+    <div class="row">
+      <!-- Button to request a new advice from the API -->
+      <button id="btnNew">New advice</button>
+
+      <!-- Button to copy the advice to clipboard -->
+      <button id="btnCopy" disabled>Copy</button>
+
+      <!-- Button to share the advice (opens a tweet window) -->
+      <button id="btnTweet" disabled>Share</button>
+    </div>
+
+    <!-- Status messages for screen readers + users (polite updates) -->
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+  </main>
+
+  <script>
+    /*
+      ===== 1) Grab references to HTML elements =====
+      We select elements by their id so we can update them with JavaScript.
+    */
+    const adviceEl = document.getElementById("advice");
+    const metaEl = document.getElementById("meta");
+    const statusEl = document.getElementById("status");
+
+    const btnNew = document.getElementById("btnNew");
+    const btnCopy = document.getElementById("btnCopy");
+    const btnTweet = document.getElementById("btnTweet");
+
+    /*
+      ===== 2) Store the latest advice in variables =====
+      These variables live in JavaScript memory (not saved anywhere permanent).
+    */
+    let currentAdvice = "";
+    let currentId = "";
+
+    /*
+      Small helper to show user feedback.
+      Example: "Loading..." or "Copied to clipboard."
+    */
+    function setStatus(msg) {
+      statusEl.textContent = msg || "";
+    }
+
+    /*
+      Helper to lock/unlock the "New advice" button while fetching.
+      This prevents spamming multiple requests at once.
+    */
+    function setLoading(isLoading) {
+      btnNew.disabled = isLoading;
+      btnNew.textContent = isLoading ? "Loading..." : "New advice";
+    }
+
+    /*
+      ===== 3) Fetch data from the Advice Slip API =====
+      - async function means we can use "await" inside it.
+      - fetch() makes an HTTP request to a URL.
+      - The API response looks like: { "slip": { "id": 123, "advice": "..." } }
+    */
+    async function fetchAdvice() {
+      setStatus("");        // clear old status message
+      setLoading(true);     // show loading state
+
+      try {
+        /*
+          Cache-buster:
+          Many browsers cache the Advice Slip API. Adding a unique query string
+          (ts=timestamp) makes the URL different every time, so the browser
+          is more likely to fetch a fresh response.
+        */
+        const url = `https://api.adviceslip.com/advice?ts=${Date.now()}`;
+
+        /*
+          Make the request.
+          headers: we say we expect JSON back.
+        */
+        const res = await fetch(url, {
+          method: "GET",
+          headers: { "Accept": "application/json" }
+        });
+
+        /*
+          If the server returns something like 404/500, res.ok will be false.
+          We throw an error so the catch block handles it.
+        */
+        if (!res.ok) throw new Error(`Request failed (${res.status})`);
+
+        /*
+          Convert the response body to a JavaScript object.
+          (JSON = text format, .json() parses it)
+        */
+        const data = await res.json();
+
+        /*
+          Safely read the nested fields using optional chaining (?.).
+          If something is missing, we default to "".
+        */
+        currentAdvice = data?.slip?.advice ?? "";
+        currentId = data?.slip?.id ?? "";
+
+        // If we didn't get advice, treat that as an error
+        if (!currentAdvice) throw new Error("No advice returned.");
+
+        /*
+          Update the page:
+          - adviceEl: the big text
+          - metaEl: slip number
+        */
+        adviceEl.textContent = `“${currentAdvice}”`;
+        metaEl.textContent = currentId ? `Slip #${currentId}` : "";
+
+        /*
+          Enable buttons now that we have content.
+          Disabled buttons were preventing copying/sharing before we had advice.
+        */
+        btnCopy.disabled = false;
+        btnTweet.disabled = false;
+
+        setStatus("Done.");
+      } catch (err) {
+        /*
+          Any error ends up here:
+          - network issue
+          - API down
+          - parsing problem
+          - empty response
+        */
+        adviceEl.textContent = "Couldn’t load advice. Try again.";
+        metaEl.textContent = "";
+
+        // Disable copy/share because there is no valid advice
+        btnCopy.disabled = true;
+        btnTweet.disabled = true;
+
+        setStatus(err?.message || "Unknown error");
+      } finally {
+        /*
+          finally runs whether we succeeded or failed.
+          We always turn off loading state.
+        */
+        setLoading(false);
+      }
+    }
+
+    /*
+      ===== 4) Connect buttons to actions (Event Listeners) =====
+      When user clicks "New advice", run fetchAdvice().
+    */
+    btnNew.addEventListener("click", fetchAdvice);
+
+    /*
+      Copy button: uses the Clipboard API (works in modern browsers).
+      Some browsers require HTTPS to allow clipboard access.
+    */
+    btnCopy.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(currentAdvice);
+        setStatus("Copied to clipboard.");
+      } catch {
+        setStatus("Copy failed (browser permissions).");
+      }
+    });
+
+    /*
+      Share button: opens a Twitter/X "intent" URL with the advice pre-filled.
+      You can switch this to another platform by changing the URL.
+    */
+    btnTweet.addEventListener("click", () => {
+      const text = currentAdvice ? `"${currentAdvice}"` : "";
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+
+      // Open in a new tab/window safely
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+
+    /*
+      ===== 5) Optional: auto-load once when the page opens =====
+      If you don't want this, delete the next line.
+    */
+    fetchAdvice();
+  </script>
+</body>
+</html>
