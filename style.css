@@ -1,145 +1,103 @@
-/* =========================================
-   1. RESET & BASE SETUP 
-   ========================================= */
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-}
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body, html { 
-    width: 100%; 
-    height: 100%; 
-    overflow: hidden; /* Keeps it looking like a fixed desktop screen */
+    width: 100%; height: 100%; overflow: hidden; 
     background-color: #1a1a1a;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* =========================================
-   2. THE DESKTOP BACKGROUND
-   ========================================= */
+/* MENU BAR */
+.menu-bar {
+    position: fixed; top: 0; left: 0; width: 100%; height: 28px;
+    background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    display: flex; justify-content: space-between; align-items: center; padding: 0 15px;
+    z-index: 3000; color: white; font-size: 13px; font-weight: 500;
+}
+.left-menu, .right-menu { display: flex; align-items: center; gap: 15px; }
+.apple-logo { font-size: 16px; margin-right: 5px; }
+
+/* DESKTOP */
 .desktop {
-    width: 100vw; 
-    height: 100vh;
+    width: 100vw; height: 100vh;
     background: url('images/background.jpg') center center / cover no-repeat;
-    position: relative;
+    position: relative; padding-top: 28px;
 }
 
-/* =========================================
-   3. DESKTOP ICONS (Project Shortcuts)
-   ========================================= */
+/* ICONS */
 .desktop-icon {
-    position: absolute; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center;
-    width: 100px; 
-    text-decoration: none; 
+    position: absolute; display: flex; flex-direction: column; 
+    align-items: center; width: 100px; text-decoration: none; 
     transition: transform 0.2s ease;
 }
-
-.desktop-icon:hover { 
-    transform: scale(1.1); 
-}
-
-.icon-img-wrapper img { 
-    width: 70px; 
-    height: 70px; 
-    object-fit: contain; 
-}
-
+.desktop-icon:hover { transform: scale(1.1); }
+.icon-img-wrapper img { width: 70px; height: 70px; object-fit: contain; }
 .desktop-icon span {
-    margin-top: 8px; 
-    color: white; 
-    font-size: 12px; 
-    padding: 3px 10px;
-    background: rgba(0, 0, 0, 0.4); 
-    border-radius: 5px; 
-    backdrop-filter: blur(5px);
+    margin-top: 8px; color: white; font-size: 12px; padding: 3px 10px;
+    background: rgba(0, 0, 0, 0.4); border-radius: 5px; backdrop-filter: blur(5px);
 }
 
-/* POSITIONS FOR PROJECT ICONS */
+/* ICON LOCATIONS */
 #icon-case1 { top: 15%; left: 15%; }
 #icon-case2 { top: 25%; left: 75%; }
-#icon-case3 { top: 50%; left: 45%; }
+#icon-case3 { top: 60%; left: 15%; }
+#icon-case4 { top: 35%; left: 42%; }
+#icon-case5 { top: 52%; left: 52%; }
+#icon-case6 { top: 20%; left: 50%; }
 
-/* =========================================
-   4. THE DOCK (Bottom Navigation)
-   ========================================= */
+/* DOCK */
 .dock-container {
-    position: fixed;
-    bottom: 60px; /* Provides the 1.5cm lift you requested */
-    left: 0; 
-    width: 100%;
-    display: flex; 
-    justify-content: center;
-    z-index: 999;
+    position: fixed; bottom: 60px; left: 0; width: 100%;
+    display: flex; justify-content: center; z-index: 999;
 }
-
 .dock {
-    display: flex; 
-    align-items: center; 
-    gap: 12px;
-    padding: 10px 18px;
-    background: rgba(30, 30, 30, 0.4); /* Darker "glass" to make icons pop */
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 0.5px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    display: flex; align-items: center; gap: 12px; padding: 10px 18px;
+    background: rgba(30, 30, 30, 0.4); backdrop-filter: blur(30px);
+    border: 0.5px solid rgba(255, 255, 255, 0.1); border-radius: 24px;
 }
-
-/* SQUIRCLE ICONS & LINK WRAPPERS */
 .dock-item {
-    width: 52px; 
-    height: 52px;
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    border-radius: 13px; /* Apple-style squircle shape */
-    font-size: 24px; 
-    color: white; /* Default symbol color */
-    text-decoration: none; /* Removes underline from links */
-    cursor: pointer; 
+    width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;
+    border-radius: 13px; font-size: 24px; color: white; text-decoration: none;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
-/* MAC COLORS & GRADIENTS - Matching your specific list */
 .dock-item[title="Safari"]   { background: linear-gradient(#5bc3f8, #1a73e8); }
 .dock-item[title="LinkedIn"] { background: #0077b5; }
 .dock-item[title="Email"]    { background: linear-gradient(#54a3ff, #0056b3); }
+.dock-item[title="Camera"]   { background: #e0e0e0; color: #333; }
+.dock-item[title="Calculator"] { background: #ff9f0a; }
+.dock-item[title="Trashcan"] { background: none; color: #999; font-size: 30px; }
+.dock-item:hover { transform: scale(1.3) translateY(-15px); }
+.dock-divider { width: 1px; height: 35px; background: rgba(255, 255, 255, 0.15); margin: 0 5px; }
 
-/* Icons with specific light backgrounds and dark symbols */
-.dock-item[title="Camera"] { 
-    background: #e0e0e0; 
-    color: #333; 
+/* POPUPS */
+.window-overlay {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px); z-index: 2000; justify-content: center; align-items: center;
 }
-.dock-item[title="Calculator"] { 
-    background: #ff9f0a; 
-    color: white; 
+.window {
+    width: 70%; height: 80%; background: white; border-radius: 12px;
+    display: flex; flex-direction: column; box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+    animation: windowOpen 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+@keyframes windowOpen { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-/* Transparent Trashcan */
-.dock-item[title="Trashcan"] { 
-    background: none; 
-    color: #999; 
-    font-size: 30px; 
+.window-header {
+    background: #e0e0e0; padding: 10px; display: flex; align-items: center; border-bottom: 1px solid #bbb;
 }
+.dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; cursor: pointer; }
+.red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+.window-title { margin-left: 15px; font-size: 13px; color: #555; font-weight: 500; }
 
-/* HOVER ANIMATION */
-.dock-item:hover { 
-    transform: scale(1.3) translateY(-15px); 
-    color: white; /* Ensures symbol stays visible on hover */
+.window-content { padding: 40px; overflow-y: auto; color: #333; flex-grow: 1; }
+.landscape-img { width: 100%; height: auto; max-height: 450px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; }
+.image-placeholder { 
+    width: 100%; height: 300px; background: #f0f0f0; border-radius: 12px; 
+    display: flex; align-items: center; justify-content: center; color: #999; 
+    border: 2px dashed #ccc; margin-bottom: 20px;
 }
+.project-text h3 { margin-top: 25px; color: #888; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+.project-text p { font-size: 1.1rem; line-height: 1.6; margin-top: 10px; }
 
-/* Specific color reset for Camera so it doesn't turn white on hover */
-.dock-item[title="Camera"]:hover {
-    color: #000;
-}
-
-.dock-divider {
-    width: 1px; 
-    height: 35px;
-    background: rgba(255, 255, 255, 0.15);
-    margin: 0 5px;
-}
+.window-content::-webkit-scrollbar { width: 8px; }
+.window-content::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }

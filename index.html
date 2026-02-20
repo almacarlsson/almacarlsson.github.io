@@ -4,60 +4,185 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alma Carlsson | Portfolio</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <header class="menu-bar">
+        <div class="left-menu">
+            <i class="fa-brands fa-apple apple-logo"></i>
+            <span class="app-name"><b>Alma Carlsson</b></span>
+            <span>File</span>
+            <span>Edit</span>
+            <span>View</span>
+            <span>Go</span>
+            <span>Window</span>
+            <span>Help</span>
+        </div>
+        <div class="right-menu">
+            <i class="fa-solid fa-wifi"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-list-ul"></i>
+            <span id="clock">Fri 20 Feb 19:12</span>
+        </div>
+    </header>
+
     <main class="desktop">
-        
         <div class="icon-layer">
-            <a href="case1.html" class="desktop-icon" id="icon-case1">
+            <a href="#" class="desktop-icon" id="icon-case1" onclick="openWindow('case1-popup')">
                 <div class="icon-img-wrapper"><img src="images/icon1.png" alt=""></div>
                 <span>Stage Visuals</span>
             </a>
-            <a href="case2.html" class="desktop-icon" id="icon-case2">
+            <a href="#" class="desktop-icon" id="icon-case2" onclick="openWindow('case2-popup')">
                 <div class="icon-img-wrapper"><img src="images/icon2.png" alt=""></div>
                 <span>Album Design</span>
             </a>
-            <a href="case3.html" class="desktop-icon" id="icon-case3">
+            <a href="#" class="desktop-icon" id="icon-case3" onclick="openWindow('case3-popup')">
                 <div class="icon-img-wrapper"><img src="images/icon3.png" alt=""></div>
                 <span>Merch Design</span>
+            </a>
+            <a href="#" class="desktop-icon" id="icon-case4" onclick="openWindow('case4-popup')">
+                <div class="icon-img-wrapper"><img src="images/icon4.png" alt=""></div>
+                <span>Brand Identity</span>
+            </a>
+            <a href="#" class="desktop-icon" id="icon-case5" onclick="openWindow('case5-popup')">
+                <div class="icon-img-wrapper"><img src="images/icon5.png" alt=""></div>
+                <span>Digital Art</span>
+            </a>
+            <a href="#" class="desktop-icon" id="icon-case6" onclick="openWindow('case6-popup')">
+                <div class="icon-img-wrapper"><img src="images/icon6.png" alt=""></div>
+                <span>Photography</span>
             </a>
         </div>
 
         <div class="dock-container">
             <div class="dock">
-    <a href="https://google.com" target="_blank" class="dock-item" title="Safari">
-        <i class="fa-solid fa-compass"></i>
-    </a>
-
-    <a href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" class="dock-item" title="LinkedIn">
-        <i class="fa-brands fa-linkedin-in"></i>
-    </a>
-
-    <a href="mailto:alma.carlsson@gmail.com" class="dock-item" title="Email">
-        <i class="fa-solid fa-envelope"></i>
-    </a>
-
-    <a href="https://www.littlevintagephotobooth.com/" class="dock-item" title="Camera">
-        <i class="fa-solid fa-camera"></i>
-    </a>
-
-    <a href="https://www.theonlinecalculator.com/" class="dock-item" title="Calculator">
-        <i class="fa-solid fa-calculator"></i>
-    </a>
-    
-    <div class="dock-divider"></div>
-    
-    <a href="#" class="dock-item" title="Trashcan">
-        <i class="fa-solid fa-trash-can"></i>
-    </a>
-</div>
-        
+                <a href="https://google.com" target="_blank" class="dock-item" title="Safari"><i class="fa-solid fa-compass"></i></a>
+                <a href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" class="dock-item" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:alma.carlsson@gmail.com" class="dock-item" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://www.littlevintagephotobooth.com/" target="_blank" class="dock-item" title="Camera"><i class="fa-solid fa-camera"></i></a>
+                <a href="https://www.theonlinecalculator.com/" target="_blank" class="dock-item" title="Calculator"><i class="fa-solid fa-calculator"></i></a>
+                <div class="dock-divider"></div>
+                <a href="#" class="dock-item" title="Trashcan"><i class="fa-solid fa-trash-can"></i></a>
+            </div>
+        </div>
     </main>
 
+    <div id="case1-popup" class="window-overlay">
+        <div class="window">
+            <div class="window-header">
+                <div class="dot red" onclick="closeWindow('case1-popup')"></div>
+                <div class="dot yellow"></div><div class="dot green"></div>
+                <span class="window-title">Stage Visuals</span>
+            </div>
+            <div class="window-content">
+                <h1>Stage Visuals</h1>
+                <img src="images/case1-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
+                <div class="project-text">
+                    <h3>The Challenge</h3><p>Describe the challenge here.</p>
+                    <h3>The Solution</h3><p>Describe the solution here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="case2-popup" class="window-overlay">
+        <div class="window">
+            <div class="window-header">
+                <div class="dot red" onclick="closeWindow('case2-popup')"></div>
+                <div class="dot yellow"></div><div class="dot green"></div>
+                <span class="window-title">Album Design</span>
+            </div>
+            <div class="window-content">
+                <h1>Album Design</h1>
+                <img src="images/case2-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
+                <div class="project-text">
+                    <h3>The Challenge</h3><p>Describe the challenge here.</p>
+                    <h3>The Solution</h3><p>Describe the solution here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="case3-popup" class="window-overlay">
+        <div class="window">
+            <div class="window-header">
+                <div class="dot red" onclick="closeWindow('case3-popup')"></div>
+                <div class="dot yellow"></div><div class="dot green"></div>
+                <span class="window-title">Merch Design</span>
+            </div>
+            <div class="window-content">
+                <h1>Merch Design</h1>
+                <img src="images/case3-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
+                <div class="project-text">
+                    <h3>The Challenge</h3><p>Describe the challenge here.</p>
+                    <h3>The Solution</h3><p>Describe the solution here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="case4-popup" class="window-overlay">
+        <div class="window">
+            <div class="window-header">
+                <div class="dot red" onclick="closeWindow('case4-popup')"></div>
+                <div class="dot yellow"></div><div class="dot green"></div>
+                <span class="window-title">Brand Identity</span>
+            </div>
+            <div class="window-content">
+                <h1>Brand Identity</h1>
+                <img src="images/case4-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
+                <div class="project-text">
+                    <h3>The Challenge</h3><p>Describe the challenge here.</p>
+                    <h3>The Solution</h3><p>Describe the solution here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="case5-popup" class="window-overlay">
+        <div class="window">
+            <div class="window-header">
+                <div class="dot red" onclick="closeWindow('case5-popup')"></div>
+                <div class="dot yellow"></div><div class="dot green"></div>
+                <span class="window-title">Digital Art</span>
+            </div>
+            <div class="window-content">
+                <h1>Digital Art</h1>
+                <img src="images/case5-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
+                <div class="project-text">
+                    <h3>The Challenge</h3><p>Describe the challenge here.</p>
+                    <h3>The Solution</h3><p>Describe the solution here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="case6-popup" class="window-overlay">
+        <div class="window">
+            <div class="window-header">
+                <div class="dot red" onclick="closeWindow('case6-popup')"></div>
+                <div class="dot yellow"></div><div class="dot green"></div>
+                <span class="window-title">Photography</span>
+            </div>
+            <div class="window-content">
+                <h1>Photography</h1>
+                <img src="images/case6-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
+                <div class="project-text">
+                    <h3>The Challenge</h3><p>Describe the challenge here.</p>
+                    <h3>The Solution</h3><p>Describe the solution here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
