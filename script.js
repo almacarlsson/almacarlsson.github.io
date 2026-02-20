@@ -1,25 +1,20 @@
 /**
- * MacBook Portfolio Simulation
- * Vanilla JS logic for interactions
+ * Senior Developer Note:
+ * GTM Click Trigger Info:
+ * Trigger Type: Click - Just Links
+ * Condition: Click ID equals 'icon-case1' (or use CSS selector #icon-case1)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("MacBook Desktop Loaded Successfully.");
+
+    // Selecting all icons for potential logic (like sounds or click effects)
     const icons = document.querySelectorAll('.desktop-icon');
 
-    // Add a simple "active" state simulation for Mac-like feel
     icons.forEach(icon => {
-        icon.addEventListener('click', function(e) {
-            // Optional: prevent default if you want to add a 
-            // "double click" requirement like a real desktop
-            // e.preventDefault();
-            console.log(`GTM Event Triggered: ${this.getAttribute('data-gtm')}`);
+        icon.addEventListener('click', (e) => {
+            // Log for debugging GTM data attributes
+            console.log("Tracking Event:", icon.getAttribute('data-gtm'));
         });
     });
-
-    // Prevent right-click context menu to enhance "App" feel (Optional)
-    /*
-    window.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-    }, false);
-    */
 });
