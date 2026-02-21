@@ -398,14 +398,21 @@ body, html {
 }
 
 /* =========================================
-    9. CALCULATOR STYLES
-    ========================================= */
+   9. CALCULATOR STYLES (REPAIRED)
+   ========================================= */
+/* Add this to target the calculator window specifically so it stays small */
+#calc-popup .window {
+    width: 320px; /* Fixed width like a real calculator */
+    height: 480px;
+}
+
 .calc-container {
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     height: 100%;
+    background: #1c1c1c; /* Darker background for contrast */
 }
 
 #calc-display {
@@ -423,24 +430,123 @@ body, html {
 .calc-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    gap: 10px;
 }
 
 .calc-grid button {
-    aspect-ratio: 1 / 1;
+    width: 60px;  /* Fixed size prevents the 'giant circle' bug */
+    height: 60px;
     border-radius: 50%;
     border: none;
     background: #333333;
     color: white;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
+    transition: background 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.calc-grid button:hover { filter: brightness(1.2); }
+/* Fix for the double-width '0' button if you have one */
+.btn-zero {
+    grid-column: span 2;
+    width: 130px !important;
+    border-radius: 30px !important;
+    justify-content: flex-start !important;
+    padding-left: 25px !important;
+}
+
+.calc-grid button:hover { filter: brightness(1.5); }
 .calc-grid button:active { transform: scale(0.95); }
+
+/* Colors */
 .btn-orange { background: #ff9f0a !important; }
 .btn-dark-gray { background: #a5a5a5 !important; color: black !important; }
+
+/* =========================================
+   10. PINTEREST GRID STYLES
+   ========================================= */
+.pinterest-grid {
+    column-count: 3; /* Number of columns */
+    column-gap: 15px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.grid-item {
+    display: inline-block; /* Essential for column-flow */
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f0f0f0;
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+}
+
+.grid-item:hover {
+    transform: scale(1.02);
+}
+
+.grid-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Adjust columns for smaller screens */
+@media (max-width: 800px) {
+    .pinterest-grid {
+        column-count: 2;
+    }
+}
+/* Lightbox Styles - Fully Transparent & No 'X' */
+.lightbox-overlay {
+    display: none; 
+    position: fixed;
+    z-index: 9999; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent; /* Fully clear */
+    
+    /* This tells the user "click to exit" visually via the cursor */
+    cursor: zoom-out; 
+    
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.lightbox-content {
+    max-width: 85%;
+    max-height: 80%;
+    border-radius: 12px;
+    /* Keeps the image visible against the desktop wallpaper */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4); 
+    
+    /* Prevents the image itself from showing the 'zoom-out' cursor 
+       so the user knows clicking the image also works */
+    cursor: pointer; 
+    
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optional: Slight dimming effect on the background only when hovered 
+   to help focus, but still keeping it transparent overall */
+.lightbox-overlay:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Add a hover effect to gallery images to show they are clickable */
+.pinterest-grid img {
+    cursor: zoom-in;
+    transition: opacity 0.2s;
+}
+
+.pinterest-grid img:hover {
+    opacity: 0.8;
+}

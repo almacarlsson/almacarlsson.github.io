@@ -166,3 +166,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+function openLightbox(src) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    
+    lightbox.style.display = 'flex';
+    lightboxImg.src = src;
+    
+    // Optional: Prevent background scrolling while looking at the image
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none';
+    
+    // Restore scrolling
+    document.body.style.overflow = 'auto';
+}
