@@ -552,3 +552,22 @@ body, html {
 .pinterest-grid img:hover {
     opacity: 0.8;
 }
+
+/* Container for the side-by-side videos */
+.video-grid-portrait {
+    display: flex;
+    gap: 15px;            /* Space between videos */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: center; /* Centers them in the window */
+}
+
+/* Styling for portrait videos */
+.portrait-video {
+    width: 48%;           /* Allows 2 to fit side-by-side with the gap */
+    max-width: 250px;     /* Keeps them from getting too huge on wide screens */
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: block;
+}
