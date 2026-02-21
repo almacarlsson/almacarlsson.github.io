@@ -1,6 +1,6 @@
 /* =========================================
     1. RESET & BASE SETUP
-    ========================================= */
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@ body, html {
 
 /* =========================================
     2. MENU BAR STYLES
-    ========================================= */
+   ========================================= */
 .menu-bar {
     position: fixed;
     top: 0;
@@ -50,7 +50,7 @@ body, html {
 
 /* =========================================
     3. THE DESKTOP BACKGROUND
-    ========================================= */
+   ========================================= */
 .desktop {
     width: 100vw;
     height: 100vh;
@@ -61,7 +61,7 @@ body, html {
 
 /* =========================================
     4. DESKTOP ICONS
-    ========================================= */
+   ========================================= */
 .desktop-icon {
     position: absolute;
     display: flex;
@@ -106,7 +106,7 @@ body, html {
 
 /* =========================================
     5. THE DOCK
-    ========================================= */
+   ========================================= */
 .dock-container {
     position: fixed;
     bottom: 60px;
@@ -156,7 +156,7 @@ body, html {
 
 /* =========================================
     6. POPUP WINDOW STYLES
-    ========================================= */
+   ========================================= */
 .window-overlay {
     display: none;
     position: fixed;
@@ -261,7 +261,7 @@ body, html {
 
 /* =========================================
     7. ABOUT ME WINDOW STYLES
-    ========================================= */
+   ========================================= */
 .about-window {
     width: 950px;
     height: 700px;
@@ -345,7 +345,7 @@ body, html {
 
 /* =========================================
     8. MISC (CLOCK, HELP, GENIE)
-    ========================================= */
+   ========================================= */
 #clock {
     font-variant-numeric: tabular-nums;
     cursor: default;
@@ -434,7 +434,7 @@ body, html {
 .btn-dark-gray { background: #a5a5a5 !important; color: black !important; }
 
 /* =========================================
-   10. PINTEREST GRID STYLES (UPDATED)
+   10. PINTEREST GRID STYLES
    ========================================= */
 .pinterest-grid {
     column-count: 3;
@@ -450,7 +450,6 @@ body, html {
     border-radius: 12px;
     overflow: hidden;
     background: #f0f0f0;
-    /* Static cursor to indicate no click action */
     cursor: default; 
 }
 
@@ -459,63 +458,18 @@ body, html {
     height: auto;
     display: block;
     object-fit: cover;
-    /* No zoom or hover transparency */
     cursor: default;
 }
 
-/* Adjust columns for smaller screens */
 @media (max-width: 800px) {
     .pinterest-grid {
         column-count: 2;
     }
 }
 
-/* Lightbox Base Styles */
-.lightbox-overlay {
-    display: none; 
-    position: fixed;
-    z-index: 10000; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.01); 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    cursor: zoom-out;
-    align-items: center;
-    justify-content: center;
-}
-
-.lightbox-content {
-    max-height: 92vh; 
-    max-width: 90vw;
-    border-radius: 12px;
-    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.6); 
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
 /* =========================================
-   11. PORTRAIT VIDEO GRID
+   11. CASE 5 UNLOCKING & LEAD MAGNETS
    ========================================= */
-.video-grid-portrait {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    justify-content: center;
-}
-
-.portrait-video {
-    width: 48%;
-    max-width: 250px;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    display: block;
-}
-
 .gate-container {
     position: relative;
     height: 100%;
@@ -576,33 +530,56 @@ body, html {
 
 .lead-form button:hover { background: #0056b3; }
 
-.pulse-dot {
-    height: 8px; width: 8px;
-    background-color: #ff3b30;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 5px;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 59, 48, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); }
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Unique animation for the Case 5 Unlock transition */
-@keyframes slideUpFade {
-    from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
+/* =========================================
+    12. CASE 6: TELESCOPE / DARKROOM STYLES
+   ========================================= */
+
+/* The main container for the telescope effect */
+#case6-flashlight-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Pitch black base */
+    overflow: hidden;
+    cursor: none; /* Hides the default mouse pointer */
+    isolation: isolate; /* Ensures the gradient stays on its own layer */
+}
+
+/* The black "curtain" that gets cut by the telescope lens */
+#flashlight-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; /* Sits above the content */
+    pointer-events: none; /* Allows clicks to pass through */
+    background: rgb(0, 0, 0); 
+    /* Smooths the movement slightly for a lens-like feel */
+    transition: background 0.05s ease-out; 
+}
+
+/* Ensure images inside Case 6 are crisp and non-draggable */
+#case6-flashlight-area img {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Optional: Subtle lens texture / Vignette */
+#case6-flashlight-area::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Adds a slight vignette so the corners of the popup feel deep */
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+    z-index: 11;
 }

@@ -58,11 +58,11 @@
             </a>
             <a href="#" class="desktop-icon" id="icon-case5" onclick="openWindow('case5-popup')">
                 <div class="icon-img-wrapper"><img src="images/icon5.png" alt=""></div>
-                <span>Digital Art</span>
+                <span>Secret</span>
             </a>
             <a href="#" class="desktop-icon" id="icon-case6" onclick="openWindow('case6-popup')">
                 <div class="icon-img-wrapper"><img src="images/icon6.png" alt=""></div>
-                <span>Photography</span>
+                <span>Hide & Seek</span>
             </a>
         </div>
 
@@ -105,7 +105,7 @@
                 </div>
                 <div class="case-images-row">
                     <video src="images/greengoggles.mp4" class="landscape-img" autoplay loop muted playsinline></video>
-                    
+
                 </div>
             </div>
         </div>
@@ -242,7 +242,7 @@
                 <div class="dot red" onclick="closeWindow('case5-popup')"></div>
                 <div class="dot yellow"></div>
                 <div class="dot green"></div>
-                <span class="window-title">System — Encrypted Folder</span>
+                <span class="window-title">Encrypted Folder</span>
             </div>
             
             <div class="window-content" id="case5-content-wrapper" style="padding: 0;"> 
@@ -267,26 +267,34 @@
     </div>
 
 
-    <div id="case6-popup" class="window-overlay">
-        <div class="window">
-            <div class="window-header">
-                <div class="dot red" onclick="closeWindow('case6-popup')"></div>
-                <div class="dot yellow"></div><div class="dot green"></div>
-                <span class="window-title">Photography</span>
-            </div>
-            <div class="window-content">
-                <h1>Photography</h1>
-                <img src="images/case6-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
-                <div class="project-text">
-                    <h3>The Story</h3>
-                    <p>Capture methods and post-processing steps for this photographic series.</p>
-                    <h3>The Equipment</h3>
-                    <p>Details on the camera, lenses, and natural lighting conditions that defined this shoot.</p>
+   <div id="case6-popup" class="window-overlay">
+    <div class="window">
+        <div class="window-header">
+            <div class="dot red" onclick="closeWindow('case6-popup')"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <span class="window-title">Photography — Darkroom Analysis</span>
+        </div>
+        
+        <div class="window-content" id="case6-telescope-area" style="position: relative; background: #000; overflow: hidden; cursor: none; padding: 0;">
+            
+            <div id="telescope-overlay"></div>
+
+            <div class="project-text" style="padding: 60px; color: white;">
+                <h1 style="font-size: 3rem; margin-bottom: 20px;">The Unseen Detail</h1>
+                <p style="font-size: 1.2rem; max-width: 600px;">
+                    In high-end product photography, the difference between "good" and "iconic" is found in the micro-details. Use the lens to scan the composition for hidden metadata and focal points.
+                </p>
+                <div class="pinterest-grid" style="margin-top: 40px;">
+                    <div class="grid-item"><img src="images/photo1.jpg" alt="Detail 1"></div>
+                    <div class="grid-item"><img src="images/photo2.jpg" alt="Detail 2"></div>
+                    <div class="grid-item"><img src="images/photo3.jpg" alt="Detail 3"></div>
                 </div>
             </div>
+
         </div>
     </div>
+</div>
 
     <script src="script.js"></script>
 

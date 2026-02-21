@@ -235,3 +235,27 @@ document.addEventListener('DOMContentLoaded', () => {
     updateClock();
     setInterval(updateClock, 1000);
 });
+
+// Scope the telescope effect ONLY to the Case 6 container
+const flashlightArea = document.getElementById('case6-flashlight-area');
+const flashlightOverlay = document.getElementById('flashlight-overlay');
+
+if (flashlightArea && flashlightOverlay) {
+    flashlightArea.addEventListener('mousemove', (e) => {
+        // Get dimensions of the popup area
+        const rect = flashlightArea.getBoundingClientRect();
+        
+        // Calculate mouse position relative to the popup's top-left corner
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Apply the sharp telescope gradient ONLY to the overlay inside Case 6
+        // Changing to sharp pixel stops (150px to 150px) creates the telescope lens look
+        flashlightOverlay.style.background = `radial-gradient(circle 150px at ${x}px ${y}px, transparent 150px, rgba(0, 0, 0, 1) 150px)`;
+    });
+
+    // Reset to black when mouse leaves the popup
+    flashlightArea.addEventListener('mouseleave', () => {
+        flashlightOverlay.style.background = 'rgb(0, 0, 0)';
+    });
+}
