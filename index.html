@@ -44,9 +44,9 @@
                 </div>
                 <span>Case: Husqvarna</span>
             </a>
-            <a href="#" class="desktop-icon" id="icon-case2" onclick="openWindow('case2-popup')">
+            <a href="#" class="desktop-icon" id="icon-case2" onclick="openWindow('about-me-popup')">
                 <div class="icon-img-wrapper"><img src="images/icon2.png" alt=""></div>
-                <span>Album Design</span>
+                <span>About Me</span>
             </a>
             <a href="#" class="desktop-icon" id="icon-case3" onclick="openWindow('case3-popup')">
                 <div class="icon-img-wrapper"><img src="images/icon3.png" alt=""></div>
@@ -106,26 +106,55 @@
         </div>
     </div>
 
-    <div id="case2-popup" class="window-overlay">
-        <div class="window">
-            <div class="window-header">
-                <div class="dot red" onclick="closeWindow('case2-popup')"></div>
-                <div class="dot yellow"></div><div class="dot green"></div>
-                <span class="window-title">Album Design</span>
-            </div>
-            <div class="window-content">
-                <h1>Album Design</h1>
-                <img src="images/case2-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
-                <div class="project-text">
-                    <h3>The Challenge</h3>
-                    <p>Describe your album design process and the visual identity created for the project here.</p>
-                    <h3>The Solution</h3>
-                    <p>Detail how the visual language of the music was translated into the final physical or digital cover art.</p>
+    <div id="about-me-popup" class="window-overlay">
+    <div class="window about-window">
+        <div class="window-header">
+            <div class="dot red" onclick="closeWindow('about-me-popup')"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <span class="window-title">About — Alma Carlsson</span>
+        </div>
+        
+        <div class="window-content about-scroll-container">
+            <div class="editorial-container">
+                <header class="editorial-header">
+                    <h1>ALMA CARLSSON</h1>
+                    <p class="tagline">GROWTH MARKETEER</p>
+                </header>
+
+                <div class="editorial-grid">
+                    <div class="editorial-image">
+                        <img src="images/your-portrait.jpg" alt="Alma Carlsson">
+                    </div>
+
+                    <div class="editorial-text">
+                        <p class="bio-intro">
+                            I’m a <strong>growth marketing student</strong> and digital builder based in Stockholm, Sweden. 
+                            I work at the intersection of data, brand, and culture. Combining analytical thinking 
+                            with strong creative concepts to build ideas that don’t just look good, but also scale.  
+                        </p>
+                        
+                        <p>
+                           My foundation is in e-commerce, SEO, and performance strategy. I approach creativity 
+                            through systems: testing, measuring, refining. From Shopify builds to AI visibility 
+                            experiments, I use technology and AI as a tool to strengthen positioning.
+                        </p>
+                        
+                        <p>
+                            I’m particularly interested in how brands earn relevance. How narrative, community, 
+                            and distribution work together. For me, growth isn’t just about traffic. It’s about 
+                            building something people choose, return to, and talk about.
+                        </p>
+
+                        <div class="editorial-footer">
+                            <p class="rep-info">ALL THE BEST <span>ALMA CARLSSON</span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <div id="case3-popup" class="window-overlay">
         <div class="window">

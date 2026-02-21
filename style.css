@@ -1,23 +1,23 @@
 /* =========================================
-   1. RESET & BASE SETUP 
-   ========================================= */
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
+    1. RESET & BASE SETUP
+    ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body, html { 
-    width: 100%; 
-    height: 100%; 
-    overflow: hidden; 
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     background-color: #1a1a1a;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* =========================================
-   2. MENU BAR STYLES
-   ========================================= */
+    2. MENU BAR STYLES
+    ========================================= */
 .menu-bar {
     position: fixed;
     top: 0;
@@ -49,10 +49,10 @@ body, html {
 }
 
 /* =========================================
-   3. THE DESKTOP BACKGROUND
-   ========================================= */
+    3. THE DESKTOP BACKGROUND
+    ========================================= */
 .desktop {
-    width: 100vw; 
+    width: 100vw;
     height: 100vh;
     background: url('images/background.jpg') center center / cover no-repeat;
     position: relative;
@@ -60,59 +60,41 @@ body, html {
 }
 
 /* =========================================
-   4. DESKTOP ICONS
-   ========================================= */
+    4. DESKTOP ICONS
+    ========================================= */
 .desktop-icon {
-    position: absolute; 
-    display: flex; 
-    flex-direction: column; 
+    position: absolute;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 100px; 
-    text-decoration: none; 
+    width: 100px;
+    text-decoration: none;
     transition: transform 0.2s ease;
 }
 
-.desktop-icon:hover { 
-    transform: scale(1.1); 
+.desktop-icon:hover {
+    transform: scale(1.1);
 }
 
-.icon-img-wrapper img { 
-    width: 70px; 
-    height: 70px; 
-    object-fit: contain; 
+.icon-img-wrapper img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    /* Updated for a rounder, modern Mac feel */
+    border-radius: 22px; 
 }
 
 .desktop-icon span {
-    margin-top: 8px; 
-    color: white; 
-    font-size: 12px; 
+    margin-top: 8px;
+    color: white;
+    font-size: 11px;
     padding: 3px 10px;
-    background: rgba(0, 0, 0, 0.4); 
-    border-radius: 5px; 
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
     backdrop-filter: blur(5px);
-}
-/* 1. Round the icon corners */
-.icon-img-wrapper img { 
-    width: 70px; 
-    height: 70px; 
-    object-fit: contain; 
-    border-radius: 14px; /* This creates the realistic Mac icon curve */
-}
-
-/* 2. Keep the text on one line */
-.desktop-icon span {
-    margin-top: 8px; 
-    color: white; 
-    font-size: 11px; /* Slightly smaller looks more premium */
-    padding: 3px 10px;
-    background: rgba(0, 0, 0, 0.4); 
-    border-radius: 5px; 
-    backdrop-filter: blur(5px);
-    
-    /* These three lines prevent the text from breaking */
-    white-space: nowrap; 
+    white-space: nowrap;
     display: inline-block;
-    width: max-content; 
+    width: max-content;
 }
 
 /* ICON COORDINATES */
@@ -124,24 +106,24 @@ body, html {
 #icon-case6 { top: 20%; left: 50%; }
 
 /* =========================================
-   5. THE DOCK
-   ========================================= */
+    5. THE DOCK
+    ========================================= */
 .dock-container {
     position: fixed;
-    bottom: 60px; 
-    left: 0; 
+    bottom: 60px;
+    left: 0;
     width: 100%;
-    display: flex; 
+    display: flex;
     justify-content: center;
     z-index: 999;
 }
 
 .dock {
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     gap: 12px;
     padding: 10px 18px;
-    background: rgba(30, 30, 30, 0.4); 
+    background: rgba(30, 30, 30, 0.4);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
     border: 0.5px solid rgba(255, 255, 255, 0.1);
@@ -150,16 +132,16 @@ body, html {
 }
 
 .dock-item {
-    width: 52px; 
+    width: 52px;
     height: 52px;
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     justify-content: center;
-    border-radius: 13px; 
-    font-size: 24px; 
-    color: white; 
-    text-decoration: none; 
-    cursor: pointer; 
+    border-radius: 13px;
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -174,15 +156,15 @@ body, html {
 .dock-divider { width: 1px; height: 35px; background: rgba(255, 255, 255, 0.15); margin: 0 5px; }
 
 /* =========================================
-   6. POPUP WINDOW STYLES
-   ========================================= */
+    6. POPUP WINDOW STYLES
+    ========================================= */
 .window-overlay {
-    display: none; 
+    display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.3); 
-    backdrop-filter: blur(8px); 
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
     z-index: 2000;
     justify-content: center;
     align-items: center;
@@ -227,6 +209,7 @@ body, html {
     flex-grow: 1;
 }
 
+/* CONTENT STYLES */
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -277,139 +260,124 @@ body, html {
     border: 1px dashed #ccc;
 }
 
+/* =========================================
+    7. ABOUT ME (EDITORIAL) WINDOW STYLES
+    ========================================= */
+.about-window {
+    width: 950px;
+    height: 700px;
+    background-color: #ffffff;
+    color: #000000;
+}
 
+.about-scroll-container {
+    height: calc(100% - 30px);
+    overflow-y: auto;
+    padding: 20px 60px;
+}
+
+.editorial-header {
+    border-bottom: 2px solid #000;
+    margin-bottom: 50px;
+    padding-bottom: 10px;
+}
+
+.editorial-header h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -3px;
+    line-height: 0.9;
+}
+
+.editorial-header .tagline {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin: 5px 0 0 0;
+}
+
+.editorial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.editorial-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: contrast(1.05) saturate(0.9);
+}
+
+.editorial-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.bio-intro {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.editorial-text p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.editorial-footer {
+    margin-top: 60px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.rep-info {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #666;
+}
+
+.rep-info span {
+    color: #000;
+    font-weight: bold;
+}
+
+.bookings {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+    8. MISC (CLOCK, HELP, GENIE)
+    ========================================= */
 #clock {
-    font-variant-numeric: tabular-nums; /* Prevents the text from jumping when numbers change */
+    font-variant-numeric: tabular-nums;
     cursor: default;
     user-select: none;
 }
 
-/* Genie Effect Animations */
 @keyframes genieIn {
-    0% {
-        transform: scale(1) translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(0.1) translateY(500px); /* Moves toward the dock */
-        opacity: 0;
-    }
+    0% { transform: scale(1) translateY(0); opacity: 1; }
+    100% { transform: scale(0.1) translateY(500px); opacity: 0; }
 }
 
 @keyframes genieOut {
-    0% {
-        transform: scale(0.1) translateY(500px);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1) translateY(0);
-        opacity: 1;
-    }
+    0% { transform: scale(0.1) translateY(500px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 
-/* Classes to trigger the animations */
-.window-genie-in {
-    animation: genieIn 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
-}
-
-.window-genie-out {
-    animation: genieOut 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-.calc-container { padding: 15px; display: flex; flex-direction: column; gap: 10px; }
-#calc-display {
-    width: 100%; background: transparent; border: none;
-    color: white; font-size: 3rem; text-align: right;
-    outline: none; margin-bottom: 10px; font-weight: 300;
-}
-.calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.calc-grid button {
-    height: 50px; width: 50px; border-radius: 50%; border: none;
-    background: #505050; color: white; font-size: 1.2rem; cursor: pointer;
-}
-.calc-grid button:active { filter: brightness(1.5); }
-.btn-dark-gray { background: #a5a5a5 !important; color: black !important; }
-.btn-orange { background: #ff9f0a !important; color: white !important; }
-
-/* --- Calculator Styling --- */
-
-/* The main container inside the calculator window */
-.calc-container {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 100%;
-}
-
-/* The calculator display screen */
-#calc-display {
-    width: 100%;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 3rem;
-    text-align: right;
-    margin-bottom: 15px;
-    outline: none;
-    font-weight: 300;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica;
-}
-
-/* The 4x5 grid for buttons */
-.calc-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-}
-
-/* Base button style (circular) */
-.calc-grid button {
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    border: none;
-    background: #333333; /* Dark gray for numbers */
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Hover/Active states */
-.calc-grid button:hover {
-    filter: brightness(1.2);
-}
-
-.calc-grid button:active {
-    transform: scale(0.95);
-}
-
-/* Orange buttons for operators */
-.btn-orange {
-    background: #ff9f0a !important;
-}
-
-/* Light gray buttons for top row (AC, ÷, ×) */
-.btn-dark-gray {
-    background: #a5a5a5 !important;
-    color: black !important;
-}
-
-/* Special styling for the '0' button to make it wide */
-.calc-grid button[style*="grid-column: span 2"] {
-    aspect-ratio: auto;
-    height: 100%;
-}
+.window-genie-in { animation: genieIn 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards; }
+.window-genie-out { animation: genieOut 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
 
 .help-toast {
     position: fixed;
-    top: 35px; /* Sits right under the menu bar */
+    top: 35px;
     left: 20px;
     background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(15px); /* Mac-style glass effect */
+    backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 10px 15px;
@@ -420,29 +388,59 @@ body, html {
     animation: fadeIn 0.3s ease;
 }
 
-.toast-content {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.toast-content p {
-    margin: 0;
-    font-size: 13px;
-    color: #333;
-    font-family: -apple-system, sans-serif;
-}
-
-.toast-close {
-    background: none;
-    border: none;
-    color: #888;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 0 0 0 5px;
-}
+.toast-content { display: flex; align-items: center; gap: 10px; }
+.toast-content p { margin: 0; font-size: 13px; color: #333; }
+.toast-close { background: none; border: none; color: #888; cursor: pointer; font-size: 16px; }
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* =========================================
+    9. CALCULATOR STYLES
+    ========================================= */
+.calc-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+#calc-display {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    text-align: right;
+    margin-bottom: 15px;
+    outline: none;
+    font-weight: 300;
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.calc-grid button {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: none;
+    background: #333333;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calc-grid button:hover { filter: brightness(1.2); }
+.calc-grid button:active { transform: scale(0.95); }
+.btn-orange { background: #ff9f0a !important; }
+.btn-dark-gray { background: #a5a5a5 !important; color: black !important; }
