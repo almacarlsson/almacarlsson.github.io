@@ -403,3 +403,46 @@ body, html {
     aspect-ratio: auto;
     height: 100%;
 }
+
+.help-toast {
+    position: fixed;
+    top: 35px; /* Sits right under the menu bar */
+    left: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px); /* Mac-style glass effect */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toast-content p {
+    margin: 0;
+    font-size: 13px;
+    color: #333;
+    font-family: -apple-system, sans-serif;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0 0 0 5px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
