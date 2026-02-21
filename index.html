@@ -31,8 +31,10 @@
     <main class="desktop">
         <div class="icon-layer">
             <a href="#" class="desktop-icon" id="icon-case1" onclick="openWindow('case1-popup')">
-                <div class="icon-img-wrapper"><img src="images/icon1.png" alt=""></div>
-                <span>Stage Visuals</span>
+                <div class="icon-img-wrapper">
+                <img src="images/husqvarna-logo.png" alt="Husqvarna">
+            </div>
+            <span>Case: Husqvarna</span>
             </a>
             <a href="#" class="desktop-icon" id="icon-case2" onclick="openWindow('case2-popup')">
                 <div class="icon-img-wrapper"><img src="images/icon2.png" alt=""></div>
@@ -55,34 +57,40 @@
                 <span>Photography</span>
             </a>
         </div>
-
-        <div class="dock-container">
-            <div class="dock">
-                <a href="https://google.com" target="_blank" class="dock-item" title="Safari"><i class="fa-solid fa-compass"></i></a>
-                <a href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" class="dock-item" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="mailto:alma.carlsson@gmail.com" class="dock-item" title="Email"><i class="fa-solid fa-envelope"></i></a>
-                <a href="https://www.littlevintagephotobooth.com/" target="_blank" class="dock-item" title="Camera"><i class="fa-solid fa-camera"></i></a>
-                <a href="https://www.theonlinecalculator.com/" target="_blank" class="dock-item" title="Calculator"><i class="fa-solid fa-calculator"></i></a>
-                <div class="dock-divider"></div>
-                <a href="#" class="dock-item" title="Trashcan"><i class="fa-solid fa-trash-can"></i></a>
-            </div>
-        </div>
-    </main>
+<div class="dock-container">
+    <div class="dock">
+        <a href="https://google.com" target="_blank" class="dock-item" title="Safari"><i class="fa-solid fa-compass"></i></a>
+        <a href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" class="dock-item" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="mailto:alma.carlsson@gmail.com" class="dock-item" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://www.littlevintagephotobooth.com/" target="_blank" class="dock-item" title="Camera"><i class="fa-solid fa-camera"></i></a>
+        <a href="javascript:void(0)" class="dock-item" title="Calculator" onclick="openWindow('calculator-popup')">
+            <i class="fa-solid fa-calculator"></i>
+        </a> 
+        <div class="dock-divider"></div>
+        <a href="#" class="dock-item" title="Trashcan"><i class="fa-solid fa-trash-can"></i></a>
+    </div>
+</div>
 
     <div id="case1-popup" class="window-overlay">
         <div class="window">
             <div class="window-header">
                 <div class="dot red" onclick="closeWindow('case1-popup')"></div>
                 <div class="dot yellow"></div><div class="dot green"></div>
-                <span class="window-title">Stage Visuals</span>
+                <span class="window-title">Green Goggles</span>
             </div>
             <div class="window-content">
-                <h1>Stage Visuals</h1>
-                <img src="images/case1-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
+                <h1>Green Goggles</h1>
+                <div class="video-container">
+                    <iframe src="https://player.vimeo.com/video/1166955686" frameborder="0" allow="autoplay; fullscreen" title="Green Goggles"></iframe>
+                </div>
                 <div class="project-text">
-                    <h3>The Challenge</h3><p>Describe the challenge here.</p>
-                    <h3>The Solution</h3><p>Describe the solution here.</p>
+                    <h3>The Brief</h3>
+                    <p>How can Husqvarna extend its role from outdoor equipment leader to active contributor to societal wellbeing?</p>
+                    <h3>The Solution</h3>
+                    <p>We identified a growing problem: nursing homes often lack access to green environments. At the same time, research consistently shows that exposure to nature reduces stress, lowers blood pressure, and improves overall wellbeing.
+                        Yet the people who need nature the most, the elderly, the immobile, the vulnerable, are the ones least able to access it.
+                        Green Goggles brings nature inside.
+                        By using immersive technology, Husqvarna transforms indoor spaces into restorative green environments, creating the world’s greenest therapy room and restoring access to nature when physical access is no longer possible.</p>
                 </div>
             </div>
         </div>
@@ -100,8 +108,10 @@
                 <img src="images/case2-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
                 <div class="project-text">
-                    <h3>The Challenge</h3><p>Describe the challenge here.</p>
-                    <h3>The Solution</h3><p>Describe the solution here.</p>
+                    <h3>The Challenge</h3>
+                    <p>Describe your album design process and the visual identity created for the project here.</p>
+                    <h3>The Solution</h3>
+                    <p>Detail how the visual language of the music was translated into the final physical or digital cover art.</p>
                 </div>
             </div>
         </div>
@@ -119,8 +129,10 @@
                 <img src="images/case3-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
                 <div class="project-text">
-                    <h3>The Challenge</h3><p>Describe the challenge here.</p>
-                    <h3>The Solution</h3><p>Describe the solution here.</p>
+                    <h3>The Strategy</h3>
+                    <p>Detail how you translated a brand into physical products and apparel.</p>
+                    <h3>The Result</h3>
+                    <p>Discuss the production quality, material choices, and the impact the merchandise had on the community or audience.</p>
                 </div>
             </div>
         </div>
@@ -138,8 +150,10 @@
                 <img src="images/case4-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
                 <div class="project-text">
-                    <h3>The Challenge</h3><p>Describe the challenge here.</p>
-                    <h3>The Solution</h3><p>Describe the solution here.</p>
+                    <h3>The Concept</h3>
+                    <p>Logo development, typography, and color theory used to build this brand.</p>
+                    <h3>The Execution</h3>
+                    <p>How the identity was rolled out across different platforms to maintain a cohesive brand voice.</p>
                 </div>
             </div>
         </div>
@@ -157,8 +171,10 @@
                 <img src="images/case5-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
                 <div class="project-text">
-                    <h3>The Challenge</h3><p>Describe the challenge here.</p>
-                    <h3>The Solution</h3><p>Describe the solution here.</p>
+                    <h3>The Vision</h3>
+                    <p>Exploring digital mediums and illustrative techniques used in this collection.</p>
+                    <h3>The Technique</h3>
+                    <p>A breakdown of the software and hardware used to achieve the textures and lighting in these pieces.</p>
                 </div>
             </div>
         </div>
@@ -176,13 +192,52 @@
                 <img src="images/case6-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
                 <div class="project-text">
-                    <h3>The Challenge</h3><p>Describe the challenge here.</p>
-                    <h3>The Solution</h3><p>Describe the solution here.</p>
+                    <h3>The Story</h3>
+                    <p>Capture methods and post-processing steps for this photographic series.</p>
+                    <h3>The Equipment</h3>
+                    <p>Details on the camera, lenses, and natural lighting conditions that defined this shoot.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
+
+    <div id="calculator-popup" class="window-overlay">
+        <div class="window" style="width: 320px; height: 465px; background: #1c1c1c; border: 1px solid #444;">
+            <div class="window-header" style="background: #333; border-bottom: none;">
+                <div class="dot red" onclick="closeWindow('calculator-popup')"></div>
+                <div class="dot yellow"></div><div class="dot green"></div>
+                <span class="window-title" style="color: #bbb;">Calculator</span>
+            </div>
+            <div class="window-content calc-container">
+                <input type="text" id="calc-display" readonly placeholder="0">
+                <div class="calc-grid">
+                    <button class="btn-dark-gray" onclick="clearCalc()">AC</button>
+                    <button class="btn-dark-gray" onclick="appendCalc('/')">÷</button>
+                    <button class="btn-dark-gray" onclick="appendCalc('*')">×</button>
+                    <button class="btn-orange" onclick="deleteLast()">C</button>
+                    
+                    <button onclick="appendCalc('7')">7</button>
+                    <button onclick="appendCalc('8')">8</button>
+                    <button onclick="appendCalc('9')">9</button>
+                    <button class="btn-orange" onclick="appendCalc('-')">−</button>
+                    
+                    <button onclick="appendCalc('4')">4</button>
+                    <button onclick="appendCalc('5')">5</button>
+                    <button onclick="appendCalc('6')">6</button>
+                    <button class="btn-orange" onclick="appendCalc('+')">+</button>
+                    
+                    <button onclick="appendCalc('1')">1</button>
+                    <button onclick="appendCalc('2')">2</button>
+                    <button onclick="appendCalc('3')">3</button>
+                    <button class="btn-orange" onclick="calculateResult()">=</button>
+                    
+                    <button onclick="appendCalc('0')" style="grid-column: span 2; border-radius: 40px; text-align: left; padding-left: 25px;">0</button>
+                    <button onclick="appendCalc('.')">.</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

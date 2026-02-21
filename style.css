@@ -48,10 +48,6 @@ body, html {
     margin-right: 5px;
 }
 
-.left-menu span, .right-menu i {
-    cursor: default;
-}
-
 /* =========================================
    3. THE DESKTOP BACKGROUND
    ========================================= */
@@ -94,6 +90,29 @@ body, html {
     background: rgba(0, 0, 0, 0.4); 
     border-radius: 5px; 
     backdrop-filter: blur(5px);
+}
+/* 1. Round the icon corners */
+.icon-img-wrapper img { 
+    width: 70px; 
+    height: 70px; 
+    object-fit: contain; 
+    border-radius: 14px; /* This creates the realistic Mac icon curve */
+}
+
+/* 2. Keep the text on one line */
+.desktop-icon span {
+    margin-top: 8px; 
+    color: white; 
+    font-size: 11px; /* Slightly smaller looks more premium */
+    padding: 3px 10px;
+    background: rgba(0, 0, 0, 0.4); 
+    border-radius: 5px; 
+    backdrop-filter: blur(5px);
+    
+    /* These three lines prevent the text from breaking */
+    white-space: nowrap; 
+    display: inline-block;
+    width: max-content; 
 }
 
 /* ICON COORDINATES */
@@ -178,6 +197,7 @@ body, html {
     flex-direction: column;
     box-shadow: 0 50px 100px rgba(0,0,0,0.5);
     animation: windowOpen 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
 }
 
 @keyframes windowOpen {
@@ -207,30 +227,19 @@ body, html {
     flex-grow: 1;
 }
 
-/* =========================================
-   7. PROJECT CONTENT STYLING
-   ========================================= */
-.landscape-img {
-    width: 100%;
-    height: auto;
-    max-height: 450px;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
     margin-bottom: 20px;
 }
 
-.image-placeholder {
-    width: 100%; 
-    height: 300px; 
-    background: #f0f0f0; 
-    border-radius: 12px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    color: #999; 
-    border: 2px dashed #ccc; 
-    margin-bottom: 20px;
+.video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
 }
 
 .project-text h3 {
@@ -247,6 +256,150 @@ body, html {
     margin-top: 10px;
 }
 
-/* Custom scrollbar */
-.window-content::-webkit-scrollbar { width: 8px; }
-.window-content::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+.landscape-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.image-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #f0f0f0;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    border: 1px dashed #ccc;
+}
+
+
+#clock {
+    font-variant-numeric: tabular-nums; /* Prevents the text from jumping when numbers change */
+    cursor: default;
+    user-select: none;
+}
+
+/* Genie Effect Animations */
+@keyframes genieIn {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.1) translateY(500px); /* Moves toward the dock */
+        opacity: 0;
+    }
+}
+
+@keyframes genieOut {
+    0% {
+        transform: scale(0.1) translateY(500px);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Classes to trigger the animations */
+.window-genie-in {
+    animation: genieIn 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+}
+
+.window-genie-out {
+    animation: genieOut 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.calc-container { padding: 15px; display: flex; flex-direction: column; gap: 10px; }
+#calc-display {
+    width: 100%; background: transparent; border: none;
+    color: white; font-size: 3rem; text-align: right;
+    outline: none; margin-bottom: 10px; font-weight: 300;
+}
+.calc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.calc-grid button {
+    height: 50px; width: 50px; border-radius: 50%; border: none;
+    background: #505050; color: white; font-size: 1.2rem; cursor: pointer;
+}
+.calc-grid button:active { filter: brightness(1.5); }
+.btn-dark-gray { background: #a5a5a5 !important; color: black !important; }
+.btn-orange { background: #ff9f0a !important; color: white !important; }
+
+/* --- Calculator Styling --- */
+
+/* The main container inside the calculator window */
+.calc-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+/* The calculator display screen */
+#calc-display {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    text-align: right;
+    margin-bottom: 15px;
+    outline: none;
+    font-weight: 300;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica;
+}
+
+/* The 4x5 grid for buttons */
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+/* Base button style (circular) */
+.calc-grid button {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: none;
+    background: #333333; /* Dark gray for numbers */
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hover/Active states */
+.calc-grid button:hover {
+    filter: brightness(1.2);
+}
+
+.calc-grid button:active {
+    transform: scale(0.95);
+}
+
+/* Orange buttons for operators */
+.btn-orange {
+    background: #ff9f0a !important;
+}
+
+/* Light gray buttons for top row (AC, ÷, ×) */
+.btn-dark-gray {
+    background: #a5a5a5 !important;
+    color: black !important;
+}
+
+/* Special styling for the '0' button to make it wide */
+.calc-grid button[style*="grid-column: span 2"] {
+    aspect-ratio: auto;
+    height: 100%;
+}
