@@ -208,62 +208,64 @@
         </div>
     </div>
 </div>
-
-    <div id="case4-popup" class="window-overlay">
+<div id="case4-popup" class="window-overlay">
         <div class="window">
             <div class="window-header">
                 <div class="dot red" onclick="closeWindow('case4-popup')"></div>
-                <div class="dot yellow"></div><div class="dot green"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
                 <span class="window-title">Case: DryPops</span>
             </div>
             <div class="window-content">
                 <h1>DryPops</h1>
                 <img src="images/case4-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
+                
                 <div class="project-text">
                     <h3>The Brief</h3>
-                    <p>How can start-up brand DryPops use performance marketing on TikTok to gain insights of target audience and brand developement for up and coming product launch? </p>
+                    <p>How can start-up brand DryPops use performance marketing on TikTok to gain insights of target audience and brand development for up and coming product launch?</p>
+                    
                     <h3>The Solution</h3>
-                    <p> 
-                    </p>
-                        <div class="video-grid-portrait">
+                    <div class="video-grid-portrait">
                         <video src="images/drypops1.mp4" class="portrait-video" autoplay loop muted playsinline></video>
                         <video src="images/drypops2.mp4" class="portrait-video" autoplay loop muted playsinline></video>
-                 </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 
     <div id="case5-popup" class="window-overlay">
-    <div class="window">
-        <div class="window-header">
-            <div class="dot red" onclick="closeWindow('case5-popup')"></div>
-            <div class="dot yellow"></div><div class="dot green"></div>
-            <span class="window-title">System — Encrypted Folder</span>
-        </div>
-        
-        <div class="window-content" id="case5-content-wrapper">
-            
-            <div id="case5-gate" style="padding: 60px 20px; text-align: center; background: #000; color: #fff; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <div style="font-size: 50px; margin-bottom: 20px;">🔒</div>
-                <h2 style="letter-spacing: 2px; font-family: monospace;">RESTRICTED CONTENT</h2>
-                <p style="color: #888; margin: 15px 0 25px; max-width: 300px; font-size: 0.9rem;">Enter your email to decrypt this case study and access the full project files.</p>
-                
-                <form onsubmit="unlockCase5(event)" style="width: 100%; max-width: 300px;">
-                    <input type="email" id="case5-email" placeholder="Email address..." required 
-                           style="width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #00ff41; font-family: monospace; outline: none; margin-bottom: 15px; border-radius: 4px;">
-                    <button type="submit" style="width: 100%; padding: 12px; background: #fff; color: #000; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; font-family: monospace;">
-                        DECRYPT & UNLOCK
-                    </button>
-                </form>
-                <div style="margin-top: 20px; font-size: 10px; color: #444; text-transform: uppercase; letter-spacing: 1px;">Security Status: Locked</div>
+        <div class="window">
+            <div class="window-header">
+                <div class="dot red" onclick="closeWindow('case5-popup')"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span class="window-title">System — Encrypted Folder</span>
             </div>
+            
+            <div class="window-content" id="case5-content-wrapper" style="padding: 0;"> 
+                
+                <div id="case5-gate" style="padding: 60px 20px; text-align: center; background: #000; color: #fff; min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                    <div style="font-size: 50px; margin-bottom: 20px;">🔒</div>
+                    <h2 style="letter-spacing: 2px; font-family: monospace;">RESTRICTED CONTENT</h2>
+                    <p style="color: #888; margin: 15px 0 25px; max-width: 300px; font-size: 0.9rem;">Enter your email to decrypt this case study and access the full project files.</p>
+                    
+                    <form onsubmit="unlockCase5(event)" style="width: 100%; max-width: 300px;">
+                        <input type="email" id="case5-email" placeholder="Email address..." required 
+                               style="width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #00ff41; font-family: monospace; outline: none; margin-bottom: 15px; border-radius: 4px;">
+                        <button type="submit" style="width: 100%; padding: 12px; background: #fff; color: #000; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; font-family: monospace;">
+                            DECRYPT & UNLOCK
+                        </button>
+                    </form>
+                    <div style="margin-top: 20px; font-size: 10px; color: #444; text-transform: uppercase; letter-spacing: 1px;">Security Status: Locked</div>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
 
+    
     <div id="case6-popup" class="window-overlay">
         <div class="window">
             <div class="window-header">
