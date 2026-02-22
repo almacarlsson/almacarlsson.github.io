@@ -178,6 +178,21 @@ function takePhoto() {
 }
 
 /* =========================================
+    8. SPOTIFY APP EXPERIENCE
+   ========================================= */
+function openSpotifyApp() {
+    // Re-use your existing logic for consistency
+    openWindow('case6-popup'); 
+    
+    // Explicit push for the "App" specific event
+    window.dataLayer.push({
+        'event': 'app_launch',
+        'app_name': 'Spotify',
+        'timestamp': new Date().toISOString()
+    });
+}
+
+/* =========================================
     6. HELP TOAST
    ========================================= */
 function showHelp() {
