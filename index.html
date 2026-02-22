@@ -40,7 +40,7 @@
         <div class="icon-layer">
             <a href="#" class="desktop-icon" id="icon-case1" onclick="openWindow('case1-popup')">
                 <div class="icon-img-wrapper">
-                    <img src="images/icon1.png" alt="Husqvarna">
+                    <img src="images/icon1.webp" alt="Husqvarna">
                 </div>
                 <span>Case: Husqvarna</span>
             </a>
@@ -57,7 +57,7 @@
                 <span>Case: DryPops</span>
             </a>
             <a href="#" class="desktop-icon" id="icon-case5" onclick="openWindow('case5-popup')">
-                <div class="icon-img-wrapper"><img src="images/icon5.png" alt=""></div>
+                <div class="icon-img-wrapper"><img src="images/icon5.jpg" alt=""></div>
                 <span>Secret</span>
             </a>
             <a href="#" class="desktop-icon" id="icon-case6" onclick="openWindow('case6-popup')">
@@ -82,34 +82,44 @@
     </div>
 </div>
 
-    <div id="case1-popup" class="window-overlay">
-        <div class="window">
-            <div class="window-header">
-                <div class="dot red" onclick="closeWindow('case1-popup')"></div>
-                <div class="dot yellow"></div><div class="dot green"></div>
-                <span class="window-title">Green Goggles</span>
-            </div>
-            <div class="window-content">
-                <h1>Green Goggles</h1>
-                <div class="video-container">
-                    <iframe src="https://player.vimeo.com/video/1166955686" frameborder="0" allow="autoplay; fullscreen" title="Green Goggles"></iframe>
-                </div>
-                <div class="project-text">
-                    <h3>The Brief</h3>
-                    <p>How can Husqvarna extend its role from outdoor equipment leader to active contributor to societal wellbeing?</p>
-                    <h3>The Solution</h3>
-                    <p>We identified a growing problem: nursing homes often lack access to green environments. At the same time, research consistently shows that exposure to nature reduces stress, lowers blood pressure, and improves overall wellbeing.
-                        Yet the people who need nature the most, the elderly, the immobile, the vulnerable, are the ones least able to access it.
-                        Green Goggles brings nature inside.
-                        By using immersive technology, Husqvarna transforms indoor spaces into restorative green environments, creating the world’s greenest therapy room and restoring access to nature when physical access is no longer possible.</p>
-                </div>
-                <div class="case-images-row">
-                    <video src="images/greengoggles.mp4" class="landscape-img" autoplay loop muted playsinline></video>
+   <div id="case1-popup" class="window-overlay">
+    <div class="window">
+        <div class="window-header">
+            <div class="dot red" onclick="closeWindow('case1-popup')"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <span class="window-title">Case: Green Goggles</span>
+        </div>
 
-                </div>
+        <div class="window-content">
+            <div class="video-container">
+                <iframe src="https://player.vimeo.com/video/1166955686" frameborder="0" allow="autoplay; fullscreen" title="Green Goggles"></iframe>
             </div>
+
+            <div class="project-text">
+                <h3>The Brief</h3>
+                <p>How can Husqvarna extend its role from outdoor equipment leader to active contributor to societal wellbeing?</p>
+                
+                <h3>The Solution</h3>
+                <p>We identified a growing problem: nursing homes often lack access to green environments. At the same time, research consistently shows that exposure to nature reduces stress, lowers blood pressure, and improves overall wellbeing.
+                    Yet the people who need nature the most, the elderly, the immobile, the vulnerable, are the ones least able to access it.
+                    Green Goggles brings nature inside.
+                    By using immersive technology, Husqvarna transforms indoor spaces into restorative green environments, creating the world’s greenest therapy room and restoring access to nature when physical access is no longer possible.</p>
+
+            </div>
+
+            <div class="case-images-row">
+                <video src="images/greengoggles.mp4" class="landscape-img" autoplay loop muted playsinline></video>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0 20px 0;">
+                <h2 style="text-transform: uppercase; letter-spacing: 4px; font-weight: bold;">The Future</h2>
+            </div>
+            
+            <img src="images/case1future.png" class="landscape-img" alt="The Future">
         </div>
     </div>
+</div>
 
     <div id="about-me-popup" class="window-overlay">
     <div class="window about-window">
@@ -210,31 +220,30 @@
 </div>
 
 <div id="case4-popup" class="window-overlay">
-        <div class="window">
-            <div class="window-header">
-                <div class="dot red" onclick="closeWindow('case4-popup')"></div>
-                <div class="dot yellow"></div>
-                <div class="dot green"></div>
-                <span class="window-title">Case: DryPops</span>
-            </div>
-            <div class="window-content">
-                <h1>DryPops</h1>
-                <img src="images/case4-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
+    <div class="window">
+        <div class="window-header">
+            <div class="dot red" onclick="closeWindow('case4-popup')"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <span class="window-title">Case: DryPops</span>
+        </div>
+        <div class="window-content">
+            <img src="images/case4-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
+            
+            <div class="project-text">
+                <h3>The Brief</h3>
+                <p>How can start-up brand DryPops use performance marketing on TikTok to gain insights of target audience and brand development for up and coming product launch?</p>
                 
-                <div class="project-text">
-                    <h3>The Brief</h3>
-                    <p>How can start-up brand DryPops use performance marketing on TikTok to gain insights of target audience and brand development for up and coming product launch?</p>
-                    
-                    <h3>The Solution</h3>
-                    <div class="video-grid-portrait">
-                        <video src="images/drypops1.mp4" class="portrait-video" autoplay loop muted playsinline></video>
-                        <video src="images/drypops2.mp4" class="portrait-video" autoplay loop muted playsinline></video>
-                    </div>
+                <h3>The Solution</h3>
+                <div class="video-grid-portrait">
+                    <video src="images/drypops1.mp4" class="portrait-video" autoplay loop muted playsinline></video>
+                    <video src="images/drypops2.mp4" class="portrait-video" autoplay loop muted playsinline></video>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <div id="case5-popup" class="window-overlay">
         <div class="window">
@@ -266,32 +275,31 @@
         </div>
     </div>
 
-
-   <div id="case6-popup" class="window-overlay">
+<div id="case6-popup" class="window-overlay">
     <div class="window">
         <div class="window-header">
             <div class="dot red" onclick="closeWindow('case6-popup')"></div>
             <div class="dot yellow"></div>
             <div class="dot green"></div>
-            <span class="window-title">Photography — Darkroom Analysis</span>
+            <span class="window-title">Case: New Project</span>
         </div>
         
-        <div class="window-content" id="case6-telescope-area" style="position: relative; background: #000; overflow: hidden; cursor: none; padding: 0;">
+        <div class="window-content">
+            <h1>New Project Title</h1>
             
-            <div id="telescope-overlay"></div>
+            <img src="images/case6-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
+            
+            <div class="project-text">
+                <h3>The Brief</h3>
+                <p>Enter the project brief here...</p>
+                
+                <h3>The Solution</h3>
+                <p>Enter the solution or results here...</p>
 
-            <div class="project-text" style="padding: 60px; color: white;">
-                <h1 style="font-size: 3rem; margin-bottom: 20px;">The Unseen Detail</h1>
-                <p style="font-size: 1.2rem; max-width: 600px;">
-                    In high-end product photography, the difference between "good" and "iconic" is found in the micro-details. Use the lens to scan the composition for hidden metadata and focal points.
-                </p>
-                <div class="pinterest-grid" style="margin-top: 40px;">
-                    <div class="grid-item"><img src="images/photo1.jpg" alt="Detail 1"></div>
-                    <div class="grid-item"><img src="images/photo2.jpg" alt="Detail 2"></div>
-                    <div class="grid-item"><img src="images/photo3.jpg" alt="Detail 3"></div>
-                </div>
+                <div class="video-grid-portrait">
+                    </div>
             </div>
-
         </div>
     </div>
 </div>

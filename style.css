@@ -170,7 +170,7 @@ body, html {
 }
 
 .window {
-    width: 70%;
+    width: 65% ;
     height: 80%;
     background: white;
     border-radius: 12px;
@@ -188,21 +188,39 @@ body, html {
 
 .window-header {
     background: #e0e0e0;
-    padding: 10px;
+    padding: 12px 16px; 
     display: flex;
     align-items: center;
     border-bottom: 1px solid #bbb;
+    height: 38px; 
 }
 
-.dot { width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; cursor: pointer; }
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.green { background: #27c93f; }
+.dot {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    margin-right: 8px !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    border: 0.5px solid rgba(0,0,0,0.2) !important;
+}
 
-.window-title { margin-left: 15px; font-size: 13px; color: #555; font-weight: 500; }
+.red    { background: #ff5f56 !important; }
+.yellow { background: #ffbd2e !important; }
+.green  { background: #27c93f !important; }
+
+
+.window-title {
+    flex-grow: 1;      /* This helps center the title properly */
+    text-align: center;
+    margin-right: 60px; /* Counter-balances the 3 dots on the left to keep text centered */
+    font-size: 13px;
+    color: #555;
+    font-weight: 500;
+}
 
 .window-content {
-    padding: 40px;
+    padding: 15px;
     overflow-y: auto;
     color: #333;
     flex-grow: 1;
@@ -246,6 +264,34 @@ body, html {
     display: block;
 }
 
+/* This ensures the container for the text has the master padding */
+.project-text {
+    padding-left: 60px;  /* Adjust this number to your liking */
+    padding-right: 60px; 
+    padding-top: 30px;
+    text-align: left;    /* Ensures everything defaults to the left */
+}
+
+/* This removes any default browser margins that might be pushing headers */
+.project-text h3 {
+    margin-left: 0;      /* Force alignment to the start of the padding */
+    padding-left: 0;
+    margin-top: 25px;
+    color: #888;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    display: block;      /* Ensures it behaves as a full-width block */
+}
+
+.project-text p {
+    margin-left: 0;      /* Keep paragraphs aligned too */
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+
 .image-placeholder {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -259,12 +305,14 @@ body, html {
     border: 1px dashed #ccc;
 }
 
+
+
 /* =========================================
     7. ABOUT ME WINDOW STYLES
    ========================================= */
 .about-window {
-    width: 950px;
-    height: 700px;
+    width: 70%;
+    height: 80%;
     background-color: #ffffff;
     color: #000000;
 }
@@ -378,7 +426,7 @@ body, html {
 }
 
 /* =========================================
-   9. CALCULATOR STYLES
+    9. CALCULATOR STYLES
    ========================================= */
 #calculator-popup .window {
     width: 320px; 
@@ -434,7 +482,7 @@ body, html {
 .btn-dark-gray { background: #a5a5a5 !important; color: black !important; }
 
 /* =========================================
-   10. PINTEREST GRID STYLES
+   10. PINTEREST GRID STYLES (UPDATED)
    ========================================= */
 .pinterest-grid {
     column-count: 3;
@@ -465,6 +513,32 @@ body, html {
     .pinterest-grid {
         column-count: 2;
     }
+}
+
+/* Lightbox Base Styles */
+.lightbox-overlay {
+    display: none; 
+    position: fixed;
+    z-index: 10000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.01); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    cursor: zoom-out;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content {
+    max-height: 92vh; 
+    max-width: 90vw;
+    border-radius: 12px;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.6); 
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 /* =========================================
@@ -530,6 +604,21 @@ body, html {
 
 .lead-form button:hover { background: #0056b3; }
 
+.pulse-dot {
+    height: 8px; width: 8px;
+    background-color: #ff3b30;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 59, 48, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); }
+}
+
 @keyframes slideUpFade {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -538,39 +627,33 @@ body, html {
 /* =========================================
     12. CASE 6: TELESCOPE / DARKROOM STYLES
    ========================================= */
-
-/* The main container for the telescope effect */
 #case6-flashlight-area {
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: #000; /* Pitch black base */
+    background-color: #000;
     overflow: hidden;
-    cursor: none; /* Hides the default mouse pointer */
-    isolation: isolate; /* Ensures the gradient stays on its own layer */
+    cursor: none;
+    isolation: isolate;
 }
 
-/* The black "curtain" that gets cut by the telescope lens */
 #flashlight-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 10; /* Sits above the content */
-    pointer-events: none; /* Allows clicks to pass through */
+    z-index: 10;
+    pointer-events: none;
     background: rgb(0, 0, 0); 
-    /* Smooths the movement slightly for a lens-like feel */
     transition: background 0.05s ease-out; 
 }
 
-/* Ensure images inside Case 6 are crisp and non-draggable */
 #case6-flashlight-area img {
     user-select: none;
     -webkit-user-drag: none;
 }
 
-/* Optional: Subtle lens texture / Vignette */
 #case6-flashlight-area::after {
     content: "";
     position: absolute;
@@ -578,8 +661,28 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Adds a slight vignette so the corners of the popup feel deep */
     box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
     pointer-events: none;
     z-index: 11;
+}
+
+/* =========================================
+   13. CASE 4: DRYPOPS SIDE-BY-SIDE FIX
+   ========================================= */
+#case4-popup .video-grid-portrait {
+    display: flex;
+    flex-direction: row; /* Force side-by-side */
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    width: 100%;
+}
+
+#case4-popup .portrait-video {
+    width: 48%; /* Each takes half the width minus gap */
+    max-width: 250px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: block;
 }
