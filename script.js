@@ -8,20 +8,27 @@ function openWindow(id) {
     if (targetWindow) {
         targetWindow.style.display = 'flex';
 
-        // DATA LAYER INTEGRATION
+        // 1. Try to find the icon that was clicked
         const triggerIcon = document.querySelector(`[onclick*="${id}"]`);
-        const projectName = triggerIcon ? triggerIcon.getAttribute('data-project-name') : 'Unknown';
+        
+        // 2. Grab Project Name: Prioritize the Icon, then the Window itself
+        const projectName = (triggerIcon && triggerIcon.getAttribute('data-project-name')) || 
+                            targetWindow.getAttribute('data-project-name') || 
+                            'Unknown';
+
+        // 3. Grab Window Type: Prioritize the Window attribute
         const windowType = targetWindow.getAttribute('data-window-type') || 'General';
 
+        // DATA LAYER PUSH
         window.dataLayer.push({
             'event': 'portfolio_interaction',
-            'event_type': 'window_open', // Precise trigger for "Open"
+            'event_type': 'window_open',
             'project_name': projectName,
             'window_type': windowType,
             'window_id': id
         });
         
-        console.log(`Tracking: Opened ${projectName}`); 
+        console.log(`✅ GTM Signal Sent: Opened ${projectName} (${windowType})`); 
     }
 }
 
