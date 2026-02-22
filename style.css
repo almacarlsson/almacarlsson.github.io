@@ -343,6 +343,13 @@ body, html {
 .grid-item img {
     width: 100%;
     display: block;
+    cursor: zoom-in;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.grid-item img:hover {
+    transform: scale(1.03);
+    filter: brightness(1.1);
 }
 
 /* =========================================
@@ -424,13 +431,16 @@ body, html {
     z-index: 10001;
     justify-content: center;
     align-items: center;
+    cursor: zoom-out;
 }
 
 .lightbox-content {
     max-width: 90%;
     max-height: 90%;
     border-radius: 12px;
+    cursor: default;
 }
+
 /* =========================================
    STRICTLY CASE 2: ABOUT ME STYLES
    ========================================= */

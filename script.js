@@ -182,7 +182,6 @@ function unlockAndCopyPrompt() {
     const btn = document.getElementById('magnet-btn');
     
     if (email.includes('@')) {
-        // --- PUT YOUR SECRET PROMPT CONTENT BETWEEN THE QUOTES BELOW ---
         const mySecretPrompt = "Extremely realistic studio portrait photo of a woman with medium warm skin tone and visible acne-textured skin, including small active blemishes, healed acne marks, subtle redness, and natural uneven texture. Straight shoulder-length dark brown hair with a natural center part, slightly imperfect and softly textured. Calm, neutral expression with relaxed facial muscles. Natural human eyes with subtle asymmetry, soft lash density, imperfect eyebrows with individual hairs visible but not overly defined. No dramatic eye detail, no sharp contrast. Real skin texture with visible pores and natural shine, no smoothing, no airbrushing. Minimal or no makeup. Framed from mid-torso up. Plain light grey studio background. Soft diffused studio lighting, low contrast, gentle shadow falloff, natural color rendering. Shot on full-frame DSLR, 50mm lens, f/5.6 aperture, realistic depth of field, unretouched RAW photo look, documentary-style realism, natural color grading, true-to-life proportions, photorealistic"; 
 
         navigator.clipboard.writeText(mySecretPrompt);
@@ -199,4 +198,14 @@ function unlockAndCopyPrompt() {
 document.addEventListener('DOMContentLoaded', () => {
     updateClock();
     setInterval(updateClock, 1000);
+
+    // Close lightbox if clicking outside the image (on the overlay)
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.addEventListener('mousedown', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+    }
 });
