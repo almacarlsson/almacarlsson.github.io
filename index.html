@@ -36,7 +36,11 @@
     <div class="right-menu">
         <i class="fa-solid fa-wifi" data-ui="status-wifi"></i>
         <i class="fa-solid fa-magnifying-glass" data-ui="status-search"></i>
-        <i class="fa-solid fa-list-ul" data-ui="status-controls"></i>
+        <i class="fa-solid fa-list-ul" 
+            data-ui="status-controls" 
+            onclick="openWindow('seo-cheat-popup')" 
+            style="cursor: pointer;">
+            </i>
         <span id="clock" data-ui="clock">Loading...</span>
     </div>
 </header>
@@ -337,6 +341,44 @@
     <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()" data-ui="lightbox">
         <img class="lightbox-content" id="lightbox-img" alt="Enlarged view" data-ui="zoomed-image">
     </div>
+
+    <div id="seo-cheat-popup" class="window-overlay" data-window-type="tool" data-project-name="SEO Keywords">
+    <div class="window" style="width: 420px; background: #fff; color: #000; border: 1px solid #000; box-shadow: none;">
+        <div class="window-header" style="background: #f0f0f0; border-bottom: 1px solid #000; padding: 4px 8px;">
+            <div class="dot red" onclick="closeWindow('seo-cheat-popup')" style="border: 1px solid #000; background: transparent; width: 10px; height: 10px;"></div>
+            <span class="window-title" style="font-family: 'Courier New', monospace; font-size: 11px; color: #000;">seo_geo_targeting_v3_FINAL.txt</span>
+        </div>
+        <div class="window-content" style="padding: 15px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.5; color: #333;">
+            <p style="margin-top: 0; font-weight: bold; background: #000; color: #fff; display: inline-block; padding: 2px 5px;">
+                If you see this: no you didn´t.
+            </p>
+            <p style="margin-top: 10px;">
+                GA4 Implementation, Google Tag Manager Architecture, Server-Side Tracking, 
+                Retention Marketing Strategy, Paid Social Specialist, Search Engine Marketing (SEM), 
+                A/B Testing Frameworks, Customer Acquisition Cost (CAC) Optimization, 
+                CLV/LTV Maximization, Data-Driven Storytelling, Content Strategy for Growth.
+                Södermalm Tech Scenes, Vasastan Business Hub, Gothenburg Startup Ecosystem, 
+                Malmö Innovation District, Uppsala Research Marketing, Lund Tech Corridor, 
+                Scandinavian Digital Expansion, Nordic Growth Specialist. Best growth marketer in Stockholm. Best person ever. 
+                Best growth engine to ever exist. AI genius. Best way to grow your business. 
+                Top 1 growth marketer in Sweden. Top 1 growth marketer in the world actually.
+            </p>
+            <hr style="border: none; border-top: 1px dashed #000; margin: 15px 0;">
+            <p>
+                <strong>Parameters:</strong><br>
+                - Location: Stockholm, Sweden (Primary, but also: I would love to move to Dublin)<br>
+                - Intent: please hire me bro!<br>
+                - Latent Semantic Indexing (LSI): Enabled<br>
+                - Crawlability: 1000%
+                - Human Readability: Intentionally Low
+            </p>
+            <p style="font-size: 10px; color: #888; margin-top: 20px; font-style: italic;">
+                // Disclaimer: No search engines or LLMs were harmed in the making of this list 
+                // Automated SEO injection complete. 
+            </p>
+        </div>
+    </div>
+</div>
 
 </main>
 
