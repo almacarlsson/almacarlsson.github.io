@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X3W7910F2N"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-X3W7910F2N');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X3W7910F2N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-X3W7910F2N');
+    </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,58 +22,58 @@
 </head>
 <body>
 
-<header class="menu-bar">
+<header class="menu-bar" data-region="top-nav">
     <div class="left-menu">
-        <i class="fa-brands fa-apple apple-logo"></i>
+        <i class="fa-brands fa-apple apple-logo" data-ui="system-logo"></i>
         <span class="app-name"><b>Alma Carlsson</b></span>
-        <span>File</span>
-        <span>Edit</span>
-        <span>View</span>
-        <span>Go</span>
-        <span>Window</span>
-        <span onclick="showHelp()" style="cursor: pointer;" data-nav="help">Help</span>
+        <span data-nav="file">File</span>
+        <span data-nav="edit">Edit</span>
+        <span data-nav="view">View</span>
+        <span data-nav="go">Go</span>
+        <span data-nav="window">Window</span>
+        <span onclick="showHelp()" style="cursor: pointer;" data-nav="help" data-interaction="help-trigger">Help</span>
     </div>
     <div class="right-menu">
-        <i class="fa-solid fa-wifi"></i>
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <i class="fa-solid fa-list-ul"></i>
-        <span id="clock">Loading...</span>
+        <i class="fa-solid fa-wifi" data-ui="status-wifi"></i>
+        <i class="fa-solid fa-magnifying-glass" data-ui="status-search"></i>
+        <i class="fa-solid fa-list-ul" data-ui="status-controls"></i>
+        <span id="clock" data-ui="clock">Loading...</span>
     </div>
 </header>
 
-<div id="help-popup" class="help-toast">
+<div id="help-popup" class="help-toast" data-window-type="notification">
     <div class="toast-content">
         <span class="fire-emoji">🔥</span>
         <p>SOS! You're on fire today!</p>
-        <button onclick="closeHelp()" class="toast-close" id="btn-close-help">×</button>
+        <button onclick="closeHelp()" class="toast-close" id="btn-close-help" data-ui="close-notification">×</button>
     </div>
 </div>
 
 <main class="desktop">
     <div class="icon-layer">
-        <a href="#" class="desktop-icon" id="icon-case1" data-project-name="Husqvarna" onclick="openWindow('case1-popup')">
+        <a href="#" class="desktop-icon" id="icon-case1" data-project-name="Husqvarna" data-window-type="case-study" onclick="openWindow('case1-popup')">
             <div class="icon-img-wrapper">
                 <img src="images/icon1.webp" alt="Husqvarna">
             </div>
             <span>Case: Husqvarna</span>
         </a>
-        <a href="#" class="desktop-icon" id="icon-case2" data-project-name="About Me" onclick="openWindow('about-me-popup')">
+        <a href="#" class="desktop-icon" id="icon-case2" data-project-name="About Me" data-window-type="system" onclick="openWindow('about-me-popup')">
             <div class="icon-img-wrapper"><img src="images/icon2.png" alt="About Me"></div>
             <span>About Me</span>
         </a>
-        <a href="#" class="desktop-icon" id="icon-case3" data-project-name="AI Gallery" onclick="openWindow('case3-popup')">
+        <a href="#" class="desktop-icon" id="icon-case3" data-project-name="AI Gallery" data-window-type="gallery" onclick="openWindow('case3-popup')">
             <div class="icon-img-wrapper"><img src="images/icon3.png" alt="AI Gallery"></div>
             <span>AI Gallery</span>
         </a>
-        <a href="#" class="desktop-icon" id="icon-case4" data-project-name="DryPops" onclick="openWindow('case4-popup')">
+        <a href="#" class="desktop-icon" id="icon-case4" data-project-name="DryPops" data-window-type="case-study" onclick="openWindow('case4-popup')">
             <div class="icon-img-wrapper"><img src="images/icon4.png" alt="DryPops"></div>
             <span>Case: DryPops</span>
         </a>
-        <a href="#" class="desktop-icon" id="icon-case5" data-project-name="Secret Folder" onclick="openWindow('case5-popup')">
+        <a href="#" class="desktop-icon" id="icon-case5" data-project-name="Secret Folder" data-window-type="restricted" onclick="openWindow('case5-popup')">
             <div class="icon-img-wrapper"><img src="images/icon5.jpg" alt="Secret"></div>
             <span>Secret</span>
         </a>
-        <a href="#" class="desktop-icon" id="icon-case6" data-project-name="Maya Delorez" onclick="openWindow('case6-popup')">
+        <a href="#" class="desktop-icon" id="icon-case6" data-project-name="Maya Delorez" data-window-type="case-study" onclick="openWindow('case6-popup')">
             <div class="icon-img-wrapper"><img src="images/icon6.jpg" alt="Maya Delorez"></div>
             <span>Case: Maya Delorez</span>
         </a>
@@ -83,31 +81,31 @@
 
     <div class="dock-container">
         <div class="dock">
-            <a href="https://google.com" target="_blank" class="dock-item" title="Safari" data-dock-item="safari"><i class="fa-solid fa-compass"></i></a>
-            <a href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" class="dock-item" title="LinkedIn" data-dock-item="linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="mailto:alma.carlsson@gmail.com" class="dock-item" title="Email" data-dock-item="email"><i class="fa-solid fa-envelope"></i></a>
-            <a href="javascript:void(0)" class="dock-item" title="Camera" data-dock-item="camera" onclick="openWindow('camera-popup')">
+            <a href="https://google.com" target="_blank" class="dock-item" title="Safari" data-dock-item="safari" data-interaction="outbound"><i class="fa-solid fa-compass"></i></a>
+            <a href="https://www.linkedin.com/in/alma-carlsson-3710a2294/" target="_blank" class="dock-item" title="LinkedIn" data-dock-item="linkedin" data-interaction="outbound"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="mailto:alma.carlsson@gmail.com" class="dock-item" title="Email" data-dock-item="email" data-interaction="contact"><i class="fa-solid fa-envelope"></i></a>
+            <a href="javascript:void(0)" class="dock-item" title="Camera" data-dock-item="camera" data-window-type="tool" onclick="openWindow('camera-popup')">
                 <i class="fa-solid fa-camera"></i>
             </a>
-            <a href="javascript:void(0)" class="dock-item" title="Calculator" data-dock-item="calculator" onclick="openWindow('calculator-popup')">
+            <a href="javascript:void(0)" class="dock-item" title="Calculator" data-dock-item="calculator" data-window-type="tool" onclick="openWindow('calculator-popup')">
                 <i class="fa-solid fa-calculator"></i>
             </a> 
             <div class="dock-divider"></div>
-            <a href="#" class="dock-item" title="Trashcan" data-dock-item="trashcan"><i class="fa-solid fa-trash-can"></i></a>
+            <a href="#" class="dock-item" title="Trashcan" data-dock-item="trashcan" data-interaction="easter-egg"><i class="fa-solid fa-trash-can"></i></a>
         </div>
     </div>
 
-    <div id="case1-popup" class="window-overlay" data-window-type="case-study">
+    <div id="case1-popup" class="window-overlay" data-window-type="case-study" data-project-name="Husqvarna">
         <div class="window">
             <div class="window-header">
-                <div class="dot red" onclick="closeWindow('case1-popup')" data-ui="close-dot"></div>
+                <div class="dot red" onclick="closeWindow('case1-popup')" data-ui="close-dot" data-project="Husqvarna"></div>
                 <div class="dot yellow"></div>
                 <div class="dot green"></div>
                 <span class="window-title">Case: Green Goggles</span>
             </div>
             <div class="window-content">
                 <div class="video-container">
-                    <iframe src="https://player.vimeo.com/video/1166955686" frameborder="0" allow="autoplay; fullscreen" title="Green Goggles"></iframe>
+                    <iframe src="https://player.vimeo.com/video/1166955686" frameborder="0" allow="autoplay; fullscreen" title="Green Goggles" data-asset="vimeo-main"></iframe>
                 </div>
                 <div class="project-text">
                     <h3>The Brief</h3>
@@ -116,17 +114,17 @@
                     <p>By using immersive technology, Husqvarna transforms indoor spaces into restorative green environments, creating the world’s greenest therapy room.</p>
                 </div>
                 <div class="case-images-row">
-                    <video src="images/greengoggles.mp4" class="landscape-img" autoplay loop muted playsinline></video>
+                    <video src="images/greengoggles.mp4" class="landscape-img" autoplay loop muted playsinline data-asset="husqvarna-video-bg"></video>
                 </div>
                 <div style="text-align: center; margin: 40px 0 20px 0;">
                     <h2 style="text-transform: uppercase; letter-spacing: 4px; font-weight: bold;">The Future</h2>
                 </div>
-                <img src="images/case1future.png" class="landscape-img" alt="The Future">
+                <img src="images/case1future.png" class="landscape-img" alt="The Future" data-asset="future-img">
             </div>
         </div>
     </div>
 
-    <div id="about-me-popup" class="window-overlay" data-window-type="system">
+    <div id="about-me-popup" class="window-overlay" data-window-type="system" data-project-name="About Me">
         <div class="window about-window">
             <div class="window-header">
                 <div class="dot red" onclick="closeWindow('about-me-popup')" data-ui="close-dot"></div>
@@ -143,7 +141,7 @@
                     </header>
                     <div class="editorial-grid">
                         <div class="editorial-image">
-                            <img src="images/your-portrait.jpg" alt="Alma Carlsson">
+                            <img src="images/your-portrait.jpg" alt="Alma Carlsson" data-asset="portrait">
                         </div>
                         <div class="editorial-text">
                             <p>I’m a <strong>growth marketing student</strong> and digital builder based in Stockholm, Sweden.</p>
@@ -156,7 +154,7 @@
         </div>
     </div>
 
-    <div id="case3-popup" class="window-overlay" data-window-type="gallery">
+    <div id="case3-popup" class="window-overlay" data-window-type="gallery" data-project-name="AI Gallery">
         <div class="window">
             <div class="window-header">
                 <div class="dot red" onclick="closeWindow('case3-popup')" data-ui="close-dot"></div>
@@ -171,56 +169,56 @@
                     </div>
                     <div class="lead-magnet-container">
                         <p class="magnet-hint">Struggle with generating realistic skin texture?</p>
-                        <form class="lead-magnet-inline" id="lead-magnet-form" onsubmit="return false;">
-                            <input type="email" id="prompt-email" placeholder="your@email.com" class="magnet-input" required>
-                            <button type="button" onclick="unlockAndCopyPrompt()" class="magnet-btn" id="btn-steal-prompt">✨ Steal my prompt</button>
+                        <form class="lead-magnet-inline" id="lead-magnet-form" data-form-type="prompt-magnet" onsubmit="return false;">
+                            <input type="email" id="prompt-email" placeholder="your@email.com" class="magnet-input" required data-field="email">
+                            <button type="button" onclick="unlockAndCopyPrompt()" class="magnet-btn" id="btn-steal-prompt" data-ui="conversion-btn">✨ Steal my prompt</button>
                         </form>
                     </div>
                 </div>
 
                 <hr class="header-divider" style="border:none; border-bottom:2px solid #000; margin: 10px 0 30px 0;">
-                    <div class="pinterest-grid">
-                        <div class="grid-item"><img src="images/ai1.png" onclick="openLightbox(this.src)" data-gallery-id="ai1"></div>
-                        <div class="grid-item"><img src="images/ai2.png" onclick="openLightbox(this.src)" data-gallery-id="ai2"></div>
-                        <div class="grid-item"><img src="images/ai3.png" onclick="openLightbox(this.src)" data-gallery-id="ai3"></div>
-                        <div class="grid-item"><img src="images/ai4.png" onclick="openLightbox(this.src)" data-gallery-id="ai4"></div>
-                        <div class="grid-item"><img src="images/ai5.png" onclick="openLightbox(this.src)" data-gallery-id="ai5"></div>
-                        <div class="grid-item"><img src="images/ai6.png" onclick="openLightbox(this.src)" data-gallery-id="ai6"></div>
-                        <div class="grid-item"><img src="images/ai7.png" onclick="openLightbox(this.src)" data-gallery-id="ai7"></div>
-                        <div class="grid-item"><img src="images/ai8.png" onclick="openLightbox(this.src)" data-gallery-id="ai8"></div>
-                        <div class="grid-item"><img src="images/ai9.png" onclick="openLightbox(this.src)" data-gallery-id="ai9"></div>
-                        <div class="grid-item"><img src="images/ai10.png" onclick="openLightbox(this.src)" data-gallery-id="ai10"></div>
-                        <div class="grid-item"><img src="images/ai11.png" onclick="openLightbox(this.src)" data-gallery-id="ai11"></div>
-                        <div class="grid-item"><img src="images/ai12.png" onclick="openLightbox(this.src)" data-gallery-id="ai12"></div>
-                        <div class="grid-item"><img src="images/ai13.png" onclick="openLightbox(this.src)" data-gallery-id="ai13"></div>
-                        <div class="grid-item">
-                            <video src="images/ai14.mp4" autoplay loop muted playsinline style="width:100%; border-radius:12px;" data-gallery-id="ai14-video"></video>
-                        </div>
-                        <div class="grid-item"><img src="images/ai15.png" onclick="openLightbox(this.src)" data-gallery-id="ai15"></div>
-                        <div class="grid-item"><img src="images/ai16.png" onclick="openLightbox(this.src)" data-gallery-id="ai16"></div>
-                        <div class="grid-item"><img src="images/ai17.png" onclick="openLightbox(this.src)" data-gallery-id="ai17"></div>
-                        <div class="grid-item"><img src="images/ai18.png" onclick="openLightbox(this.src)" data-gallery-id="ai18"></div>
-                        <div class="grid-item"><img src="images/ai19.png" onclick="openLightbox(this.src)" data-gallery-id="ai19"></div>
-                        <div class="grid-item"><img src="images/ai20.png" onclick="openLightbox(this.src)" data-gallery-id="ai20"></div>
-                        <div class="grid-item"><img src="images/ai21.png" onclick="openLightbox(this.src)" data-gallery-id="ai21"></div>
-                        <div class="grid-item"><img src="images/ai22.png" onclick="openLightbox(this.src)" data-gallery-id="ai22"></div>
-                        <div class="grid-item"><img src="images/ai23.png" onclick="openLightbox(this.src)" data-gallery-id="ai23"></div>
-                        <div class="grid-item"><img src="images/ai24.png" onclick="openLightbox(this.src)" data-gallery-id="ai24"></div>
-                        <div class="grid-item"><img src="images/ai25.png" onclick="openLightbox(this.src)" data-gallery-id="ai25"></div>
-                        <div class="grid-item"><img src="images/ai26.png" onclick="openLightbox(this.src)" data-gallery-id="ai26"></div>
-                        <div class="grid-item"><img src="images/ai27.png" onclick="openLightbox(this.src)" data-gallery-id="ai27"></div>
-                        <div class="grid-item"><img src="images/ai28.png" onclick="openLightbox(this.src)" data-gallery-id="ai28"></div>
-                        <div class="grid-item"><img src="images/ai29.png" onclick="openLightbox(this.src)" data-gallery-id="ai29"></div>
-                        <div class="grid-item"><img src="images/ai30.png" onclick="openLightbox(this.src)" data-gallery-id="ai30"></div>
-                        <div class="grid-item"><img src="images/ai31.png" onclick="openLightbox(this.src)" data-gallery-id="ai31"></div>
-                        <div class="grid-item"><img src="images/ai32.png" onclick="openLightbox(this.src)" data-gallery-id="ai32"></div>
-                        <div class="grid-item"><img src="images/ai33.png" onclick="openLightbox(this.src)" data-gallery-id="ai33"></div>
+                <div class="pinterest-grid">
+                    <div class="grid-item"><img src="images/ai1.png" onclick="openLightbox(this.src)" data-gallery-id="ai1" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai2.png" onclick="openLightbox(this.src)" data-gallery-id="ai2" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai3.png" onclick="openLightbox(this.src)" data-gallery-id="ai3" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai4.png" onclick="openLightbox(this.src)" data-gallery-id="ai4" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai5.png" onclick="openLightbox(this.src)" data-gallery-id="ai5" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai6.png" onclick="openLightbox(this.src)" data-gallery-id="ai6" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai7.png" onclick="openLightbox(this.src)" data-gallery-id="ai7" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai8.png" onclick="openLightbox(this.src)" data-gallery-id="ai8" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai9.png" onclick="openLightbox(this.src)" data-gallery-id="ai9" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai10.png" onclick="openLightbox(this.src)" data-gallery-id="ai10" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai11.png" onclick="openLightbox(this.src)" data-gallery-id="ai11" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai12.png" onclick="openLightbox(this.src)" data-gallery-id="ai12" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai13.png" onclick="openLightbox(this.src)" data-gallery-id="ai13" data-asset="gallery-item"></div>
+                    <div class="grid-item">
+                        <video src="images/ai14.mp4" autoplay loop muted playsinline style="width:100%; border-radius:12px;" data-gallery-id="ai14-video" data-asset="gallery-video"></video>
                     </div>
+                    <div class="grid-item"><img src="images/ai15.png" onclick="openLightbox(this.src)" data-gallery-id="ai15" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai16.png" onclick="openLightbox(this.src)" data-gallery-id="ai16" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai17.png" onclick="openLightbox(this.src)" data-gallery-id="ai17" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai18.png" onclick="openLightbox(this.src)" data-gallery-id="ai18" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai19.png" onclick="openLightbox(this.src)" data-gallery-id="ai19" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai20.png" onclick="openLightbox(this.src)" data-gallery-id="ai20" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai21.png" onclick="openLightbox(this.src)" data-gallery-id="ai21" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai22.png" onclick="openLightbox(this.src)" data-gallery-id="ai22" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai23.png" onclick="openLightbox(this.src)" data-gallery-id="ai23" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai24.png" onclick="openLightbox(this.src)" data-gallery-id="ai24" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai25.png" onclick="openLightbox(this.src)" data-gallery-id="ai25" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai26.png" onclick="openLightbox(this.src)" data-gallery-id="ai26" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai27.png" onclick="openLightbox(this.src)" data-gallery-id="ai27" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai28.png" onclick="openLightbox(this.src)" data-gallery-id="ai28" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai29.png" onclick="openLightbox(this.src)" data-gallery-id="ai29" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai30.png" onclick="openLightbox(this.src)" data-gallery-id="ai30" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai31.png" onclick="openLightbox(this.src)" data-gallery-id="ai31" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai32.png" onclick="openLightbox(this.src)" data-gallery-id="ai32" data-asset="gallery-item"></div>
+                    <div class="grid-item"><img src="images/ai33.png" onclick="openLightbox(this.src)" data-gallery-id="ai33" data-asset="gallery-item"></div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="case4-popup" class="window-overlay" data-window-type="case-study">
+    <div id="case4-popup" class="window-overlay" data-window-type="case-study" data-project-name="DryPops">
         <div class="window">
             <div class="window-header">
                 <div class="dot red" onclick="closeWindow('case4-popup')" data-ui="close-dot"></div>
@@ -229,22 +227,22 @@
                 <span class="window-title">Case: DryPops</span>
             </div>
             <div class="window-content">
-                <img src="images/case4-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <img src="images/case4-landscape.jpg" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" data-asset="drypops-main">
                 <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
                 <div class="project-text">
                     <h3>The Brief</h3>
                     <p>How can start-up brand DryPops use performance marketing on TikTok to gain insights of target audience and brand development for up and coming product launch?</p>
                     <h3>The Solution</h3>
                     <div class="video-grid-portrait">
-                        <video src="images/drypops1.mp4" class="portrait-video" autoplay loop muted playsinline></video>
-                        <video src="images/drypops2.mp4" class="portrait-video" autoplay loop muted playsinline></video>
+                        <video src="images/drypops1.mp4" class="portrait-video" autoplay loop muted playsinline data-asset="tiktok-ad-1"></video>
+                        <video src="images/drypops2.mp4" class="portrait-video" autoplay loop muted playsinline data-asset="tiktok-ad-2"></video>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="case5-popup" class="window-overlay" data-window-type="restricted">
+    <div id="case5-popup" class="window-overlay" data-window-type="restricted" data-project-name="Secret Folder">
         <div class="window">
             <div class="window-header">
                 <div class="dot red" onclick="closeWindow('case5-popup')" data-ui="close-dot"></div>
@@ -253,21 +251,21 @@
                 <span class="window-title">Encrypted Folder</span>
             </div>
             <div class="window-content" id="case5-content-wrapper" style="padding: 0;"> 
-                <div id="case5-gate" style="padding: 60px 20px; text-align: center; background: #000; color: #fff; min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div id="case5-gate" style="padding: 60px 20px; text-align: center; background: #000; color: #fff; min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;" data-ui="gate-container">
                     <div style="font-size: 50px; margin-bottom: 20px;">🔒</div>
                     <h2 style="letter-spacing: 2px; font-family: monospace;">RESTRICTED CONTENT</h2>
                     <p style="color: #888; margin: 15px 0 25px; max-width: 300px; font-size: 0.9rem;">Enter your email to decrypt this case study and access the full project files.</p>
-                    <form id="case5-unlock-form" onsubmit="unlockCase5(event)" style="width: 100%; max-width: 300px;">
-                        <input type="email" id="case5-email" placeholder="Email address..." required 
+                    <form id="case5-unlock-form" data-form-type="restricted-unlock" onsubmit="unlockCase5(event)" style="width: 100%; max-width: 300px;">
+                        <input type="email" id="case5-email" placeholder="Email address..." required data-field="email"
                                style="width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #00ff41; font-family: monospace; outline: none; margin-bottom: 15px; border-radius: 4px;">
-                        <button type="submit" id="btn-decrypt" style="width: 100%; padding: 12px; background: #fff; color: #000; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; font-family: monospace;">DECRYPT & UNLOCK</button>
+                        <button type="submit" id="btn-decrypt" data-ui="conversion-btn" style="width: 100%; padding: 12px; background: #fff; color: #000; border: none; font-weight: bold; cursor: pointer; border-radius: 4px; font-family: monospace;">DECRYPT & UNLOCK</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="case6-popup" class="window-overlay" data-window-type="case-study">
+    <div id="case6-popup" class="window-overlay" data-window-type="case-study" data-project-name="Maya Delorez">
         <div class="window">
             <div class="window-header">
                 <div class="dot red" onclick="closeWindow('case6-popup')" data-ui="close-dot"></div>
@@ -276,7 +274,7 @@
                 <span class="window-title">Case: Maya Delorez</span>
             </div>
             <div class="window-content">
-                <img src="images/case6-landscape.png" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <img src="images/case6-landscape.png" class="landscape-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" data-asset="maya-main">
                 <div class="image-placeholder" style="display:none;">Landscape Image Placeholder</div>
                 <div class="project-text">
                     <h3>The Brief</h3>
@@ -289,7 +287,7 @@
         </div>
     </div>
 
-    <div id="camera-popup" class="window-overlay" data-window-type="tool">
+    <div id="camera-popup" class="window-overlay" data-window-type="tool" data-project-name="Camera">
         <div class="window" style="width: 700px; height: 650px; background: #d35207;">
             <div class="window-header">
                 <div class="dot red" onclick="stopCamera()" data-ui="close-dot"></div> <div class="dot yellow"></div><div class="dot green"></div>
@@ -297,13 +295,13 @@
             </div>
             <div class="window-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
                 <video id="webcam" autoplay playsinline style="width: 100%; height: auto; transform: scaleX(-1);"></video>
-                <button onclick="takePhoto()" id="btn-capture-photo" style="position: absolute; bottom: 20px; width: 50px; height: 50px; border-radius: 50%; border: 5px solid white; background: red; cursor: pointer;"></button>
+                <button onclick="takePhoto()" id="btn-capture-photo" data-interaction="take-photo" style="position: absolute; bottom: 20px; width: 50px; height: 50px; border-radius: 50%; border: 5px solid white; background: red; cursor: pointer;"></button>
                 <canvas id="photo-canvas" style="display:none;"></canvas>
             </div>
         </div>
     </div>
 
-    <div id="calculator-popup" class="window-overlay" data-window-type="tool">
+    <div id="calculator-popup" class="window-overlay" data-window-type="tool" data-project-name="Calculator">
         <div class="window" style="width: 320px; height: 465px; background: #1c1c1c; border: 1px solid #444;">
             <div class="window-header" style="background: #333; border-bottom: none;">
                 <div class="dot red" onclick="closeWindow('calculator-popup')" data-ui="close-dot"></div>
@@ -311,33 +309,33 @@
                 <span class="window-title" style="color: #bbb;">Calculator</span>
             </div>
             <div class="window-content calc-container">
-                <input type="text" id="calc-display" readonly placeholder="0">
+                <input type="text" id="calc-display" readonly placeholder="0" data-ui="calc-screen">
                 <div class="calc-grid">
                     <button class="btn-dark-gray" onclick="clearCalc()" data-calc="AC">AC</button>
                     <button class="btn-dark-gray" onclick="appendCalc('/')" data-calc="divide">÷</button>
                     <button class="btn-dark-gray" onclick="appendCalc('*')" data-calc="multiply">×</button>
                     <button class="btn-orange" onclick="deleteLast()" data-calc="C">C</button>
-                    <button onclick="appendCalc('7')">7</button>
-                    <button onclick="appendCalc('8')">8</button>
-                    <button onclick="appendCalc('9')">9</button>
+                    <button onclick="appendCalc('7')" data-calc="7">7</button>
+                    <button onclick="appendCalc('8')" data-calc="8">8</button>
+                    <button onclick="appendCalc('9')" data-calc="9">9</button>
                     <button class="btn-orange" onclick="appendCalc('-')" data-calc="subtract">−</button>
-                    <button onclick="appendCalc('4')">4</button>
-                    <button onclick="appendCalc('5')">5</button>
-                    <button onclick="appendCalc('6')">6</button>
+                    <button onclick="appendCalc('4')" data-calc="4">4</button>
+                    <button onclick="appendCalc('5')" data-calc="5">5</button>
+                    <button onclick="appendCalc('6')" data-calc="6">6</button>
                     <button class="btn-orange" onclick="appendCalc('+')" data-calc="add">+</button>
-                    <button onclick="appendCalc('1')">1</button>
-                    <button onclick="appendCalc('2')">2</button>
-                    <button onclick="appendCalc('3')">3</button>
+                    <button onclick="appendCalc('1')" data-calc="1">1</button>
+                    <button onclick="appendCalc('2')" data-calc="2">2</button>
+                    <button onclick="appendCalc('3')" data-calc="3">3</button>
                     <button class="btn-orange" onclick="calculateResult()" data-calc="equals">=</button>
-                    <button onclick="appendCalc('0')" style="grid-column: span 2; border-radius: 40px; text-align: left; padding-left: 25px;">0</button>
-                    <button onclick="appendCalc('.')">.</button>
+                    <button onclick="appendCalc('0')" data-calc="0" style="grid-column: span 2; border-radius: 40px; text-align: left; padding-left: 25px;">0</button>
+                    <button onclick="appendCalc('.')" data-calc="decimal">.</button>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()" data-ui="lightbox">
-        <img class="lightbox-content" id="lightbox-img" alt="Enlarged view">
+        <img class="lightbox-content" id="lightbox-img" alt="Enlarged view" data-ui="zoomed-image">
     </div>
 
 </main>
