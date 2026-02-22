@@ -1,26 +1,42 @@
+window.dataLayer = window.dataLayer || [];
+
 /* =========================================
     1. WINDOW MANAGEMENT
    ========================================= */
-async function openWindow(id) {
-    const win = document.getElementById(id);
-    if (!win) return;
-    win.style.display = 'flex';
-    
-    if (id === 'camera-popup') {
-        try {
-            stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            const video = document.getElementById('webcam');
-            if (video) video.srcObject = stream;
-        } catch (err) {
-            console.error("Camera error:", err);
-            alert("Camera access denied.");
-        }
+function openWindow(id) {
+    const targetWindow = document.getElementById(id);
+    if (targetWindow) {
+        targetWindow.style.display = 'flex';
+
+        // DATA LAYER INTEGRATION
+        const triggerIcon = document.querySelector(`[onclick*="${id}"]`);
+        const projectName = triggerIcon ? triggerIcon.getAttribute('data-project-name') : 'Unknown';
+        const windowType = targetWindow.getAttribute('data-window-type') || 'General';
+
+        window.dataLayer.push({
+            'event': 'portfolio_interaction',
+            'event_type': 'window_open',
+            'project_name': projectName,
+            'window_type': windowType,
+            'window_id': id
+        });
+        
+        console.log(`Tracking: Opened ${projectName}`); 
     }
 }
 
 function closeWindow(id) {
     const win = document.getElementById(id);
-    if (win) win.style.display = 'none';
+    if (win) {
+        win.style.display = 'none';
+        
+        // DATA LAYER INTEGRATION
+        window.dataLayer.push({
+            'event': 'portfolio_interaction',
+            'event_type': 'window_close',
+            'window_id': id
+        });
+    }
     if (id === 'camera-popup') stopCamera();
 }
 
@@ -35,6 +51,13 @@ function openLightbox(src) {
         lightboxImg.src = src;
         lightbox.style.display = 'flex';
         document.body.style.overflow = 'hidden';
+
+        // DATA LAYER INTEGRATION
+        window.dataLayer.push({
+            'event': 'gallery_interaction',
+            'interaction_type': 'image_zoom',
+            'image_src': src
+        });
     }
 }
 
@@ -75,6 +98,14 @@ function deleteLast() {
 }
 async function calculateResult() {
     const display = document.getElementById('calc-display');
+    
+    // DATA LAYER INTEGRATION
+    window.dataLayer.push({
+        'event': 'tool_usage',
+        'tool_name': 'calculator',
+        'action': 'calculate'
+    });
+
     try {
         const response = await fetch(`https://api.mathjs.org/v4/?expr=${encodeURIComponent(currentInput)}`);
         const result = await response.text();
@@ -108,6 +139,13 @@ function takePhoto() {
     
     if (!video || !canvas) return;
 
+    // DATA LAYER INTEGRATION
+    window.dataLayer.push({
+        'event': 'tool_usage',
+        'tool_name': 'camera',
+        'action': 'take_photo'
+    });
+
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -128,6 +166,14 @@ function takePhoto() {
 function showHelp() {
     const help = document.getElementById('help-popup');
     if (help) help.style.display = 'block';
+
+    // DATA LAYER INTEGRATION
+    window.dataLayer.push({
+        'event': 'ui_interaction',
+        'element': 'help_toast',
+        'action': 'show'
+    });
+
     setTimeout(closeHelp, 4000);
 }
 function closeHelp() {
@@ -139,7 +185,6 @@ function closeHelp() {
     7. LEAD MAGNETS & UNLOCKING
    ========================================= */
 
-// Case 5 Specific Unlock Logic
 function unlockCase5(event) {
     event.preventDefault();
     const emailInput = document.getElementById('case5-email');
@@ -147,6 +192,14 @@ function unlockCase5(event) {
     const wrapper = document.getElementById('case5-content-wrapper');
     
     if (!wrapper) return;
+
+    // DATA LAYER INTEGRATION (High-Value Conversion)
+    window.dataLayer.push({
+        'event': 'generate_lead',
+        'form_id': 'case5-unlock-form',
+        'form_name': 'Restricted Content Unlock',
+        'project_context': 'Stealth Growth'
+    });
 
     wrapper.style.transition = "opacity 0.4s ease, background-color 0.4s ease";
     wrapper.style.opacity = "0";
@@ -176,12 +229,18 @@ function unlockCase5(event) {
     }, 400);
 }
 
-// AI Gallery Unlock & Copy Logic
 function unlockAndCopyPrompt() {
     const email = document.getElementById('prompt-email').value;
     const btn = document.getElementById('magnet-btn');
     
     if (email.includes('@')) {
+        // DATA LAYER INTEGRATION (Conversion)
+        window.dataLayer.push({
+            'event': 'generate_lead',
+            'form_id': 'lead-magnet-form',
+            'form_name': 'AI Prompt Steal'
+        });
+
         const mySecretPrompt = "Extremely realistic studio portrait photo of a woman with medium warm skin tone and visible acne-textured skin, including small active blemishes, healed acne marks, subtle redness, and natural uneven texture. Straight shoulder-length dark brown hair with a natural center part, slightly imperfect and softly textured. Calm, neutral expression with relaxed facial muscles. Natural human eyes with subtle asymmetry, soft lash density, imperfect eyebrows with individual hairs visible but not overly defined. No dramatic eye detail, no sharp contrast. Real skin texture with visible pores and natural shine, no smoothing, no airbrushing. Minimal or no makeup. Framed from mid-torso up. Plain light grey studio background. Soft diffused studio lighting, low contrast, gentle shadow falloff, natural color rendering. Shot on full-frame DSLR, 50mm lens, f/5.6 aperture, realistic depth of field, unretouched RAW photo look, documentary-style realism, natural color grading, true-to-life proportions, photorealistic"; 
 
         navigator.clipboard.writeText(mySecretPrompt);
@@ -199,7 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateClock();
     setInterval(updateClock, 1000);
 
-    // Close lightbox if clicking outside the image (on the overlay)
     const lightbox = document.getElementById('lightbox');
     if (lightbox) {
         lightbox.addEventListener('mousedown', (e) => {
