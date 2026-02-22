@@ -248,17 +248,18 @@ function unlockCase5(event) {
 
 function unlockAndCopyPrompt() {
     const email = document.getElementById('prompt-email').value;
-    const btn = document.getElementById('magnet-btn');
+    const btn = document.getElementById('btn-steal-prompt');
     
     if (email.includes('@')) {
         // DATA LAYER INTEGRATION (Conversion)
         window.dataLayer.push({
             'event': 'generate_lead',
             'form_id': 'lead-magnet-form',
-            'form_name': 'AI Prompt Steal'
+            'form_name': 'AI Prompt Steal',
+            'interaction_type': 'lead_magnet'
         });
 
-        const mySecretPrompt = "..."; // Prompt shortened for brevity
+        const mySecretPrompt = "Act as a professional photographer. Use high-contrast lighting, 8k resolution, and detailed skin texture parameters..."; 
 
         navigator.clipboard.writeText(mySecretPrompt);
         btn.innerHTML = "✅ Copied to Clipboard!";
