@@ -1,6 +1,22 @@
 /* =========================================
     0. ANALYTICS & DATA LAYER HELPER
    ========================================= */
+function toggleWidget() {
+    const widget = document.getElementById('engagement-widget');
+    const icon = document.getElementById('toggle-icon');
+    if (!widget || !icon) return;
+
+    widget.classList.toggle('minimized');
+    
+    if (widget.classList.contains('minimized')) {
+        icon.className = 'fa-solid fa-plus';
+        sessionStorage.setItem('widget_minimized', 'true');
+    } else {
+        icon.className = 'fa-solid fa-minus';
+        sessionStorage.setItem('widget_minimized', 'false');
+    }
+}
+
 const engagementTasks = [
     'sos-trigger', 'seo-cheat-popup', 'lead-magnet', 'incoming-call',
     'tool-camera', 'tool-calculator', 'case5-popup'
@@ -417,6 +433,16 @@ function unlockAndCopyPrompt() {
 document.addEventListener('DOMContentLoaded', () => {
     updateClock();
     setInterval(updateClock, 1000);
+
+    // RESTORE WIDGET STATE
+    if (sessionStorage.getItem('widget_minimized') === 'true') {
+        const widget = document.getElementById('engagement-widget');
+        const icon = document.getElementById('toggle-icon');
+        if (widget && icon) {
+            widget.classList.add('minimized');
+            icon.className = 'fa-solid fa-plus';
+        }
+    }
 
     // DEEP LINKING SUPPORT
     const urlParams = new URLSearchParams(window.location.search);

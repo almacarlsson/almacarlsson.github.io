@@ -99,11 +99,18 @@
 <main class="desktop">
     <!-- HIDDEN TASKS WIDGET -->
     <div id="engagement-widget" class="macos-widget" data-ui-component="engagement-tracker">
-        <div class="widget-header" id="score-text">0% of hidden tasks found</div>
-        <div class="progress-container">
-            <div class="progress-bar" id="score-bar" style="width: 0%;"></div>
+        <div class="widget-controls">
+            <button class="widget-toggle-btn" onclick="toggleWidget()" id="btn-toggle-widget" title="Minimize/Maximize">
+                <i class="fa-solid fa-minus" id="toggle-icon"></i>
+            </button>
         </div>
-        <p class="widget-hint">Find 100% of the hidden tasks and receive a gift</p>
+        <div id="widget-content">
+            <div class="widget-header" id="score-text">0% of hidden tasks found</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="score-bar" style="width: 0%;"></div>
+            </div>
+            <p class="widget-hint">Find 100% of the hidden tasks and receive a gift</p>
+        </div>
     </div>
 
     <!-- ENGAGEMENT 100% SUCCESS MODAL -->
