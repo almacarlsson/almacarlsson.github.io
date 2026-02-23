@@ -1,6 +1,37 @@
 /* =========================================
     0. ANALYTICS & DATA LAYER HELPER
    ========================================= */
+const engagementTasks = [
+    'case1-popup', 'about-me-popup', 'case3-popup', 'case4-popup',
+    'case5-popup', 'case6-popup', 'facetime-video-popup',
+    'tool-camera', 'tool-calculator', 'incoming-call'
+];
+let completedTasks = new Set();
+
+/**
+ * Updates the engagement score widget.
+ * @param {string} taskId - The unique ID for the task completed.
+ */
+function trackEngagement(taskId) {
+    if (completedTasks.has(taskId)) return;
+    completedTasks.add(taskId);
+    
+    const score = Math.min(100, Math.round((completedTasks.size / engagementTasks.length) * 100));
+    const bar = document.getElementById('score-bar');
+    const text = document.getElementById('score-text');
+    
+    if (bar) bar.style.width = score + '%';
+    if (text) text.textContent = score + '%';
+
+    if (score === 100) {
+        setTimeout(() => {
+            const modal = document.getElementById('engagement-success-modal');
+            if (modal) modal.style.display = 'flex';
+            pushToDataLayer('engagement_milestone', { 'milestone': '100_percent' });
+        }, 1200);
+    }
+}
+
 /**
  * Pushes events to the Data Layer with consistent naming and structure.
  * @param {string} eventName - The name of the event (e.g., 'portfolio_interaction')
@@ -20,10 +51,15 @@ function pushToDataLayer(eventName, eventData = {}) {
 /* =========================================
     1. WINDOW MANAGEMENT
    ========================================= */
-function openWindow(id) {
+function openWindow(id, pushHistory = true) {
     const targetWindow = document.getElementById(id);
     if (targetWindow) {
         targetWindow.style.display = 'flex';
+
+        // TRACK ENGAGEMENT
+        if (engagementTasks.includes(id)) {
+            trackEngagement(id);
+        }
 
         // 1. Try to find the icon that was clicked
         const triggerIcon = document.querySelector(`[onclick*="${id}"]`);
@@ -35,6 +71,12 @@ function openWindow(id) {
 
         // 3. Grab Window Type: Prioritize the Window attribute
         const windowType = targetWindow.getAttribute('data-window-type') || 'General';
+
+        // 4. VIRTUAL ROUTING: Update URL without reload
+        if (pushHistory) {
+            const newUrl = window.location.pathname + '?window=' + id;
+            window.history.pushState({ windowId: id }, '', newUrl);
+        }
 
         // DATA LAYER PUSH (Refactored)
         pushToDataLayer('portfolio_interaction', {
@@ -74,6 +116,11 @@ function closeWindow(id) {
     if (win) {
         win.style.display = 'none';
         
+        // VIRTUAL ROUTING: Reset URL
+        if (window.history.state && window.history.state.windowId === id) {
+            window.history.pushState({}, '', window.location.pathname);
+        }
+
         // DATA LAYER INTEGRATION (Refactored)
         pushToDataLayer('portfolio_interaction', {
             'event_type': 'window_close', // Precise trigger for "Close"
@@ -87,6 +134,17 @@ function closeWindow(id) {
     }
     if (id === 'camera-popup') stopCamera();
 }
+
+// HANDLE BROWSER BACK/FORWARD BUTTONS
+window.onpopstate = function(event) {
+    // Close all overlays first
+    document.querySelectorAll('.window-overlay').forEach(el => el.style.display = 'none');
+    clearInterval(callInterval); // stop facetime if running
+
+    if (event.state && event.state.windowId) {
+        openWindow(event.state.windowId, false); // Don't push history again
+    }
+};
 
 /* =========================================
     2. LIGHTBOX (PINTEREST GRID)
@@ -155,6 +213,9 @@ function deleteLast() {
 async function calculateResult() {
     const display = document.getElementById('calc-display');
     
+    // TRACK ENGAGEMENT
+    trackEngagement('tool-calculator');
+
     // DATA LAYER INTEGRATION (Refactored)
     pushToDataLayer('tool_usage', {
         'tool_name': 'calculator',
@@ -200,6 +261,9 @@ function takePhoto() {
     const context = canvas.getContext('2d');
     
     if (!video || !canvas) return;
+
+    // TRACK ENGAGEMENT
+    trackEngagement('tool-camera');
 
     // DATA LAYER INTEGRATION (Refactored)
     pushToDataLayer('tool_usage', {
@@ -330,6 +394,13 @@ document.addEventListener('DOMContentLoaded', () => {
     updateClock();
     setInterval(updateClock, 1000);
 
+    // DEEP LINKING SUPPORT
+    const urlParams = new URLSearchParams(window.location.search);
+    const windowToOpen = urlParams.get('window');
+    if (windowToOpen) {
+        setTimeout(() => openWindow(windowToOpen, false), 500);
+    }
+
     const lightbox = document.getElementById('lightbox');
     if (lightbox) {
         lightbox.addEventListener('mousedown', (e) => {
@@ -388,6 +459,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (clickCount === 8) {
             sessionStorage.setItem('call_triggered', 'true');
             if (notif) notif.style.display = 'block';
+
+            // TRACK ENGAGEMENT
+            trackEngagement('incoming-call');
 
             // GTM PUSH: Trigger Event
             pushToDataLayer('ui_interaction', {

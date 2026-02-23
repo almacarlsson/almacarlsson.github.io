@@ -97,26 +97,57 @@
 </div>
 
 <main class="desktop">
+    <!-- ENGAGEMENT WIDGET (GROWTH MARKETER CHOICE) -->
+    <div id="engagement-widget" class="macos-widget" data-ui-component="engagement-tracker">
+        <div class="widget-header">Engagement Score</div>
+        <div class="score-percentage" id="score-text">0%</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="score-bar" style="width: 0%;"></div>
+        </div>
+        <p class="widget-hint">Explore the OS to reach 100% and unlock the results.</p>
+    </div>
+
+    <!-- ENGAGEMENT 100% SUCCESS MODAL -->
+    <div id="engagement-success-modal" class="window-overlay" style="z-index: 10010;" data-window-type="achievement">
+        <div class="window success-modal">
+            <div class="window-header">
+                <div class="dot red" onclick="document.getElementById('engagement-success-modal').style.display='none'"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span class="window-title">System Achievement</span>
+            </div>
+            <div class="window-content" style="text-align: center; padding: 40px 20px;">
+                <div style="font-size: 50px; margin-bottom: 20px;">🏆</div>
+                <h2 style="font-weight: 900; letter-spacing: -1px; text-transform: uppercase;">PERFECT SCORE!</h2>
+                <p style="margin: 15px 0 25px; color: #666; font-size: 1.1rem; line-height: 1.5;">You’ve seen it all. Ready to talk results?</p>
+                <a href="mailto:alma.carlsson@gmail.com" class="call-email-btn" style="display: inline-block; width: auto; padding: 12px 40px; text-decoration: none;">
+                    Let's Connect
+                </a>
+                <p style="font-size: 10px; color: #bbb; margin-top: 25px; font-style: italic;">// Achievement Unlocked: OS Power User</p>
+            </div>
+        </div>
+    </div>
+
     <div class="icon-layer">
-        <a href="#" class="desktop-icon" id="icon-case1" data-project-name="Husqvarna" data-window-type="case-study" onclick="openWindow('case1-popup')">
+        <a href="#" class="desktop-icon" id="icon-case1" data-project-name="Husqvarna" data-window-type="case-study" onclick="openWindow('case1-popup'); return false;">
             <div class="icon-img-wrapper">
                 <img src="images/icon1.webp" alt="Husqvarna">
             </div>
             <span>Case: Husqvarna</span>
         </a>
-        <a href="#" class="desktop-icon" id="icon-case2" data-project-name="About Me" data-window-type="system" onclick="openWindow('about-me-popup')">
+        <a href="#" class="desktop-icon" id="icon-case2" data-project-name="About Me" data-window-type="system" onclick="openWindow('about-me-popup'); return false;">
             <div class="icon-img-wrapper"><img src="images/icon2.png" alt="About Me"></div>
             <span>About Me</span>
         </a>
-        <a href="#" class="desktop-icon" id="icon-case3" data-project-name="AI Gallery" data-window-type="gallery" onclick="openWindow('case3-popup')">
+        <a href="#" class="desktop-icon" id="icon-case3" data-project-name="AI Gallery" data-window-type="gallery" onclick="openWindow('case3-popup'); return false;">
             <div class="icon-img-wrapper"><img src="images/icon3.png" alt="AI Gallery"></div>
             <span>AI Gallery</span>
         </a>
-        <a href="#" class="desktop-icon" id="icon-case4" data-project-name="DryPops" data-window-type="case-study" onclick="openWindow('case4-popup')">
+        <a href="#" class="desktop-icon" id="icon-case4" data-project-name="DryPops" data-window-type="case-study" onclick="openWindow('case4-popup'); return false;">
             <div class="icon-img-wrapper"><img src="images/icon4.png" alt="DryPops"></div>
             <span>Case: DryPops</span>
         </a>
-        <a href="#" class="desktop-icon" id="icon-case5" data-project-name="Secret Folder" data-window-type="restricted" onclick="openWindow('case5-popup')">
+        <a href="#" class="desktop-icon" id="icon-case5" data-project-name="Secret Folder" data-window-type="restricted" onclick="openWindow('case5-popup'); return false;">
             <div class="icon-img-wrapper"><img src="images/icon5.jpg" alt="Secret"></div>
             <span>Secret</span>
         </a>

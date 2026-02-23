@@ -813,3 +813,72 @@ body, html {
 .call-control-btn.end-call:hover {
     background: #d32f2f;
 }
+
+/* =========================================
+   ENGAGEMENT WIDGET (GROWTH MARKETER STYLE)
+   ========================================= */
+.macos-widget {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    width: 200px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 0.5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 22px;
+    padding: 18px;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    z-index: 500;
+}
+
+.widget-header {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    opacity: 0.8;
+}
+
+.score-percentage {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #28cd41, #34c759);
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.widget-hint {
+    font-size: 10px;
+    line-height: 1.4;
+    opacity: 0.7;
+    margin: 0;
+}
+
+/* Completion Modal */
+.success-modal {
+    width: 400px !important;
+    height: auto !important;
+}
+
+@media (max-width: 1024px) {
+    .macos-widget { display: none; } /* Hide on smaller screens to save space */
+}
