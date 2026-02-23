@@ -1,4 +1,21 @@
-window.dataLayer = window.dataLayer || [];
+/* =========================================
+    0. ANALYTICS & DATA LAYER HELPER
+   ========================================= */
+/**
+ * Pushes events to the Data Layer with consistent naming and structure.
+ * @param {string} eventName - The name of the event (e.g., 'portfolio_interaction')
+ * @param {object} eventData - Additional parameters for the event
+ */
+function pushToDataLayer(eventName, eventData = {}) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        'event': eventName,
+        ...eventData,
+        'timestamp': new Date().toISOString()
+    });
+    // Development logs can be commented out in production if needed
+    // console.log(`[DataLayer] ${eventName}:`, eventData);
+}
 
 /* =========================================
     1. WINDOW MANAGEMENT
@@ -19,9 +36,8 @@ function openWindow(id) {
         // 3. Grab Window Type: Prioritize the Window attribute
         const windowType = targetWindow.getAttribute('data-window-type') || 'General';
 
-        // DATA LAYER PUSH
-        window.dataLayer.push({
-            'event': 'portfolio_interaction',
+        // DATA LAYER PUSH (Refactored)
+        pushToDataLayer('portfolio_interaction', {
             'event_type': 'window_open',
             'project_name': projectName,
             'window_type': windowType,
@@ -37,9 +53,8 @@ function closeWindow(id) {
     if (win) {
         win.style.display = 'none';
         
-        // DATA LAYER INTEGRATION
-        window.dataLayer.push({
-            'event': 'portfolio_interaction',
+        // DATA LAYER INTEGRATION (Refactored)
+        pushToDataLayer('portfolio_interaction', {
             'event_type': 'window_close', // Precise trigger for "Close"
             'window_id': id
         });
@@ -59,12 +74,11 @@ function openLightbox(src) {
         lightbox.style.display = 'flex';
         document.body.style.overflow = 'hidden';
 
-        // DATA LAYER INTEGRATION
+        // DATA LAYER INTEGRATION (Refactored)
         // Extracting filename from src to identify WHICH image was opened
         const imageName = src.split('/').pop();
 
-        window.dataLayer.push({
-            'event': 'gallery_interaction',
+        pushToDataLayer('gallery_interaction', {
             'interaction_type': 'image_zoom',
             'image_src': src,
             'image_name': imageName // Precise trigger for specific images
@@ -78,8 +92,8 @@ function closeLightbox() {
         lightbox.style.display = 'none';
         document.body.style.overflow = 'auto';
 
-        window.dataLayer.push({
-            'event': 'gallery_interaction',
+        // DATA LAYER INTEGRATION (Refactored)
+        pushToDataLayer('gallery_interaction', {
             'interaction_type': 'image_close'
         });
     }
@@ -115,9 +129,8 @@ function deleteLast() {
 async function calculateResult() {
     const display = document.getElementById('calc-display');
     
-    // DATA LAYER INTEGRATION
-    window.dataLayer.push({
-        'event': 'tool_usage',
+    // DATA LAYER INTEGRATION (Refactored)
+    pushToDataLayer('tool_usage', {
         'tool_name': 'calculator',
         'action': 'calculate',
         'input_expression': currentInput
@@ -130,6 +143,12 @@ async function calculateResult() {
         display.value = result;
         currentInput = result; 
     } catch (error) {
+        // DATA LAYER INTEGRATION (Error Tracking)
+        pushToDataLayer('tool_usage', {
+            'tool_name': 'calculator',
+            'action': 'error',
+            'input_expression': currentInput
+        });
         display.value = "Error";
         currentInput = "";
     }
@@ -156,9 +175,8 @@ function takePhoto() {
     
     if (!video || !canvas) return;
 
-    // DATA LAYER INTEGRATION
-    window.dataLayer.push({
-        'event': 'tool_usage',
+    // DATA LAYER INTEGRATION (Refactored)
+    pushToDataLayer('tool_usage', {
         'tool_name': 'camera',
         'action': 'take_photo'
     });
@@ -184,11 +202,9 @@ function openSpotifyApp() {
     // Re-use your existing logic for consistency
     openWindow('case6-popup'); 
     
-    // Explicit push for the "App" specific event
-    window.dataLayer.push({
-        'event': 'app_launch',
-        'app_name': 'Spotify',
-        'timestamp': new Date().toISOString()
+    // Explicit push for the "App" specific event (Refactored)
+    pushToDataLayer('app_launch', {
+        'app_name': 'Spotify'
     });
 }
 
@@ -199,9 +215,8 @@ function showHelp() {
     const help = document.getElementById('help-popup');
     if (help) help.style.display = 'block';
 
-    // DATA LAYER INTEGRATION
-    window.dataLayer.push({
-        'event': 'ui_interaction',
+    // DATA LAYER INTEGRATION (Refactored)
+    pushToDataLayer('ui_interaction', {
         'element': 'help_toast',
         'action': 'show'
     });
@@ -225,9 +240,8 @@ function unlockCase5(event) {
     
     if (!wrapper) return;
 
-    // DATA LAYER INTEGRATION (High-Value Conversion)
-    window.dataLayer.push({
-        'event': 'generate_lead',
+    // DATA LAYER INTEGRATION (High-Value Conversion - Refactored)
+    pushToDataLayer('generate_lead', {
         'form_id': 'case5-unlock-form',
         'form_name': 'Restricted Content Unlock',
         'project_context': 'Stealth Growth'
@@ -266,9 +280,8 @@ function unlockAndCopyPrompt() {
     const btn = document.getElementById('btn-steal-prompt');
     
     if (email.includes('@')) {
-        // DATA LAYER INTEGRATION (Conversion)
-        window.dataLayer.push({
-            'event': 'generate_lead',
+        // DATA LAYER INTEGRATION (Conversion - Refactored)
+        pushToDataLayer('generate_lead', {
             'form_id': 'lead-magnet-form',
             'form_name': 'AI Prompt Steal',
             'interaction_type': 'lead_magnet'
@@ -300,15 +313,115 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // TRACKING FOR CASE 1 VIDEO (Precision Tracking)
+    // TRACKING FOR CASE 1 VIDEO (Precision Tracking - Refactored)
     const case1Video = document.querySelector('#case1-popup video');
     if (case1Video) {
         case1Video.onplay = () => {
-            window.dataLayer.push({
-                'event': 'video_interaction',
+            pushToDataLayer('video_interaction', {
                 'action': 'play',
                 'video_name': 'Husqvarna Case Study Video'
             });
         };
     }
+
+    // 1. TRACK MENU BAR (Curiosity Check)
+    document.querySelectorAll('.left-menu span[data-nav]').forEach(item => {
+        item.addEventListener('click', () => {
+            // Avoid double tracking if it already has showHelp()
+            if (item.getAttribute('data-nav') === 'help') return; 
+            
+            pushToDataLayer('ui_interaction', {
+                'element': 'top_menu',
+                'action': 'click',
+                'label': item.getAttribute('data-nav')
+            });
+        });
+    });
+
+    // 2. TRACK DOCK (Conversions & Easter Eggs)
+    document.querySelectorAll('.dock-item[data-interaction]').forEach(item => {
+        item.addEventListener('click', () => {
+            pushToDataLayer('ui_interaction', {
+                'element': 'dock',
+                'action': item.getAttribute('data-interaction'),
+                'label': item.getAttribute('data-dock-item'),
+                'destination_url': item.getAttribute('href') || 'internal'
+            });
+        });
+    });
+
+    // 3. MACOS INCOMING CALL LOGIC (8-Click Trigger)
+    let clickCount = 0;
+    const CALL_LINKEDIN = "https://www.linkedin.com/in/alma-carlsson-3710a2294/";
+    const notif = document.getElementById('incoming-call-notification');
+    const toast = document.getElementById('decline-toast');
+    const successMsg = document.getElementById('call-success-msg');
+
+    document.addEventListener('click', (e) => {
+        // 1. CLEAR MESSAGES (If they are currently visible)
+        if (successMsg && successMsg.style.display === 'block') {
+            successMsg.style.display = 'none';
+        }
+        if (toast && toast.classList.contains('show')) {
+            toast.classList.remove('show');
+        }
+
+        // 2. TRIGGER NOTIFICATION (Only once per session)
+        if (sessionStorage.getItem('call_triggered')) return;
+
+        clickCount++;
+        if (clickCount === 8) {
+            sessionStorage.setItem('call_triggered', 'true');
+            if (notif) notif.style.display = 'block';
+
+            // GTM PUSH: Trigger Event
+            pushToDataLayer('ui_interaction', {
+                'element': 'incoming_call',
+                'action': 'show',
+                'trigger_type': '8_click_threshold'
+            });
+        }
+    });
+
+    // Accept Button
+    const btnAccept = document.getElementById('btn-accept-call');
+    if (btnAccept) {
+        btnAccept.addEventListener('click', (e) => {
+            e.stopPropagation(); // Stop from counting as a site click
+            if (notif) notif.style.display = 'none';
+            if (successMsg) successMsg.style.display = 'block';
+            
+            window.open(CALL_LINKEDIN, '_blank');
+
+            // GTM PUSH: Accept Conversion
+            pushToDataLayer('ui_interaction', {
+                'element': 'incoming_call',
+                'action': 'accept'
+            });
+        });
+    }
+
+    // Decline Button
+    const btnDecline = document.getElementById('btn-decline-call');
+    if (btnDecline) {
+        btnDecline.addEventListener('click', (e) => {
+            e.stopPropagation(); // Stop from counting as a site click
+            if (notif) notif.style.display = 'none';
+            if (toast) {
+                toast.classList.add('show');
+            }
+
+            // GTM PUSH: Decline Interaction
+            pushToDataLayer('ui_interaction', {
+                'element': 'incoming_call',
+                'action': 'decline'
+            });
+        });
+    }
+
+    // SIGNAL: PAGE READY (Best Practice)
+    pushToDataLayer('dom_ready', {
+        'page_title': document.title,
+        'page_path': window.location.pathname
+    });
 });

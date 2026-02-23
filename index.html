@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X3W7910F2N"></script>
+    <!-- 1. Initialize Data Layer (Must be first) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      
+      // Push initial page information
       gtag('js', new Date());
-      gtag('config', 'G-X3W7910F2N');
+      gtag('config', 'G-X3W7910F2N', {
+        'send_page_view': true,
+        'cookie_flags': 'SameSite=None;Secure'
+      });
     </script>
+
+    <!-- 2. Load GTM / gtag.js -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X3W7910F2N"></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alma Carlsson | Portfolio</title>
-    
-    <script>
-        window.dataLayer = window.dataLayer || [];
-    </script>
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -403,6 +408,34 @@
 
     <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()" data-ui="lightbox">
         <img class="lightbox-content" id="lightbox-img" alt="Enlarged view" data-ui="zoomed-image">
+    </div>
+
+    <!-- MACOS INCOMING CALL NOTIFICATION (FACETIME STYLE) -->
+    <div id="incoming-call-notification" class="macos-notification">
+        <div class="facetime-container">
+            <div class="caller-avatar">
+                <img src="images/your-portrait.jpg" alt="Caller Avatar">
+            </div>
+            <div class="caller-info">
+                <span class="caller-name">Alma Carlsson</span>
+                <span class="caller-subtext">FaceTime Video...</span>
+                <span style="font-size: 9px; color: #aaa; margin-top: 2px;">Interested in taking a coffee?</span>
+            </div>
+        </div>
+        <div class="notif-actions">
+            <button id="btn-decline-call" class="notif-btn decline">Decline</button>
+            <button id="btn-accept-call" class="notif-btn accept">Accept</button>
+        </div>
+    </div>
+
+    <!-- CALL SUCCESS MESSAGE -->
+    <div id="call-success-msg" class="success-banner">
+        <i class="fa-solid fa-check-circle"></i> Thanks for taking my call! Let's connect on LinkedIn.
+    </div>
+
+    <!-- SECONDARY TOAST -->
+    <div id="decline-toast" class="bottom-toast">
+        No worries! I'll be here when you're ready. 😉
     </div>
 
 </main>
