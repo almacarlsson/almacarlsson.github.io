@@ -98,6 +98,7 @@ body, html {
 #icon-case4 { top: 35%; left: 42%; }
 #icon-case5 { top: 52%; left: 52%; }
 #icon-case6 { top: 20%; left: 50%; }
+#icon-facetime { top: 65%; left: 78%; }
 
 /* =========================================
     5. THE DOCK
@@ -661,4 +662,154 @@ body, html {
 @keyframes slideDownIn {
     from { top: -60px; opacity: 0; }
     to { top: 60px; opacity: 1; }
+}
+
+/* =========================================
+   FACETIME ACTIVE CALL WINDOW STYLES
+   ========================================= */
+.facetime-call-window {
+    width: 800px;
+    height: 550px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: white;
+}
+
+.facetime-header {
+    background: #1a1a1a !important;
+    border-bottom: none !important;
+}
+
+.facetime-header .window-title {
+    color: #eee !important;
+}
+
+.facetime-content {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.facetime-video-container {
+    flex: 1;
+    position: relative;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.facetime-placeholder {
+    text-align: center;
+    color: #444;
+}
+
+.facetime-placeholder i {
+    font-size: 80px;
+    margin-bottom: 15px;
+}
+
+.facetime-video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.facetime-overlay-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+    pointer-events: none;
+}
+
+.call-duration {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: monospace;
+    color: #28cd41;
+    pointer-events: auto;
+}
+
+.call-cta-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 20px;
+    border-radius: 15px;
+    width: 280px;
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    pointer-events: auto;
+}
+
+.call-cta-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.call-cta-box p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+.call-email-btn {
+    display: block;
+    background: #007aff;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.call-email-btn:hover {
+    background: #0063cc;
+}
+
+.facetime-footer {
+    height: 80px;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.call-control-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.call-control-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.call-control-btn.end-call {
+    background: #ff3b30;
+    width: 60px;
+    height: 45px;
+    border-radius: 22px;
+}
+
+.call-control-btn.end-call:hover {
+    background: #d32f2f;
 }

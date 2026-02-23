@@ -44,7 +44,28 @@ function openWindow(id) {
             'window_id': id
         });
         
-        console.log(`✅ GTM Signal Sent: Opened ${projectName} (${windowType})`); 
+        console.log(`✅ GTM Signal Sent: Opened ${projectName} (${windowType})`);
+
+        // SPECIAL CASE: FACETIME TIMER
+        if (id === 'facetime-video-popup') {
+            startFaceTimeTimer();
+        }
+    }
+}
+
+let callInterval;
+function startFaceTimeTimer() {
+    const timerEl = document.getElementById('call-timer');
+    if (timerEl) {
+        let seconds = 0;
+        clearInterval(callInterval);
+        timerEl.textContent = "00:00"; // Reset view
+        callInterval = setInterval(() => {
+            seconds++;
+            const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const secs = (seconds % 60).toString().padStart(2, '0');
+            timerEl.textContent = `${mins}:${secs}`;
+        }, 1000);
     }
 }
 
@@ -58,6 +79,11 @@ function closeWindow(id) {
             'event_type': 'window_close', // Precise trigger for "Close"
             'window_id': id
         });
+
+        // STOP TIMER IF FACETIME
+        if (id === 'facetime-video-popup') {
+            clearInterval(callInterval);
+        }
     }
     if (id === 'camera-popup') stopCamera();
 }
@@ -352,21 +378,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. MACOS INCOMING CALL LOGIC (8-Click Trigger)
     let clickCount = 0;
-    const CALL_LINKEDIN = "https://www.linkedin.com/in/alma-carlsson-3710a2294/";
     const notif = document.getElementById('incoming-call-notification');
-    const toast = document.getElementById('decline-toast');
-    const successMsg = document.getElementById('call-success-msg');
 
     document.addEventListener('click', (e) => {
-        // 1. CLEAR MESSAGES (If they are currently visible)
-        if (successMsg && successMsg.style.display === 'block') {
-            successMsg.style.display = 'none';
-        }
-        if (toast && toast.classList.contains('show')) {
-            toast.classList.remove('show');
-        }
-
-        // 2. TRIGGER NOTIFICATION (Only once per session)
+        // TRIGGER NOTIFICATION (Only once per session)
         if (sessionStorage.getItem('call_triggered')) return;
 
         clickCount++;
@@ -389,14 +404,15 @@ document.addEventListener('DOMContentLoaded', () => {
         btnAccept.addEventListener('click', (e) => {
             e.stopPropagation(); // Stop from counting as a site click
             if (notif) notif.style.display = 'none';
-            if (successMsg) successMsg.style.display = 'block';
             
-            window.open(CALL_LINKEDIN, '_blank');
-
-            // GTM PUSH: Accept Conversion
+            // 1. Show the FaceTime Window
+            openWindow('facetime-video-popup');
+            
+            // GTM PUSH: Accept Conversion (Interactive FaceTime)
             pushToDataLayer('ui_interaction', {
                 'element': 'incoming_call',
-                'action': 'accept'
+                'action': 'accept_facetime',
+                'interaction_type': 'simulated_call'
             });
         });
     }
@@ -407,9 +423,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btnDecline.addEventListener('click', (e) => {
             e.stopPropagation(); // Stop from counting as a site click
             if (notif) notif.style.display = 'none';
-            if (toast) {
-                toast.classList.add('show');
-            }
 
             // GTM PUSH: Decline Interaction
             pushToDataLayer('ui_interaction', {

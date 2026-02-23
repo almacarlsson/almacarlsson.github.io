@@ -129,6 +129,15 @@
             </div>
             <span>Spotify</span>
         </a>
+        <a href="#" class="desktop-icon" id="icon-facetime" 
+        data-project-name="FaceTime Call" 
+        data-window-type="app_facetime" 
+        onclick="openWindow('facetime-video-popup'); return false;">
+            <div class="icon-img-wrapper" style="background: #28cd41; display: flex; align-items: center; justify-content: center; border-radius: 22px;">
+                <i class="fa-solid fa-video" style="color: white; font-size: 35px;"></i>
+            </div>
+            <span>FaceTime</span>
+        </a>
     </div>
 
     <div class="dock-container">
@@ -359,6 +368,49 @@
     </div>
 </div>
 
+    <!-- FACETIME ACTIVE CALL WINDOW -->
+    <div id="facetime-video-popup" class="window-overlay" data-window-type="app_facetime" data-project-name="FaceTime Call">
+        <div class="window facetime-call-window">
+            <div class="window-header facetime-header">
+                <div class="dot red" onclick="closeWindow('facetime-video-popup')" data-ui="close-dot"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span class="window-title">FaceTime — Alma Carlsson</span>
+            </div>
+            <div class="window-content facetime-content">
+                <div class="facetime-video-container">
+                    <!-- Placeholder for video: Add your video file path below -->
+                    <div class="facetime-placeholder">
+                        <i class="fa-solid fa-video-slash"></i>
+                        <p>Connecting...</p>
+                    </div>
+                    <!-- Replace the div above with this when ready:
+                    <video src="images/your-video.mp4" autoplay loop muted playsinline></video>
+                    -->
+                    
+                    <div class="facetime-overlay-controls">
+                        <div class="call-duration" id="call-timer">00:00</div>
+                        <div class="call-cta-box">
+                            <h3>Let's grab that coffee!</h3>
+                            <p>I'd love to discuss how I can help your team grow.</p>
+                            <a href="mailto:alma.carlsson@gmail.com" class="call-email-btn">
+                                <i class="fa-solid fa-envelope"></i> Send an Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="facetime-footer">
+                    <button class="call-control-btn mute"><i class="fa-solid fa-microphone"></i></button>
+                    <button class="call-control-btn end-call" onclick="closeWindow('facetime-video-popup')">
+                        <i class="fa-solid fa-phone-slash"></i>
+                    </button>
+                    <button class="call-control-btn camera"><i class="fa-solid fa-video"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="camera-popup" class="window-overlay" data-window-type="tool" data-project-name="Camera">
         <div class="window" style="width: 700px; height: 650px; background: #d35207;">
             <div class="window-header">
@@ -426,16 +478,6 @@
             <button id="btn-decline-call" class="notif-btn decline">Decline</button>
             <button id="btn-accept-call" class="notif-btn accept">Accept</button>
         </div>
-    </div>
-
-    <!-- CALL SUCCESS MESSAGE -->
-    <div id="call-success-msg" class="success-banner">
-        <i class="fa-solid fa-check-circle"></i> Thanks for taking my call! Let's connect on LinkedIn.
-    </div>
-
-    <!-- SECONDARY TOAST -->
-    <div id="decline-toast" class="bottom-toast">
-        No worries! I'll be here when you're ready. 😉
     </div>
 
 </main>
