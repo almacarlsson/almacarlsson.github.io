@@ -819,58 +819,49 @@ body, html {
    ========================================= */
 .macos-widget {
     position: absolute;
-    top: 50px;
+    bottom: 110px;
     right: 20px;
-    width: 200px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    width: 280px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
     border: 0.5px solid rgba(255, 255, 255, 0.3);
-    border-radius: 22px;
-    padding: 18px;
+    border-radius: 18px;
+    padding: 15px;
     color: white;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
     z-index: 500;
 }
 
 .widget-header {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    opacity: 0.8;
-}
-
-.score-percentage {
-    font-size: 32px;
-    font-weight: 800;
+    font-size: 13px;
+    font-weight: 600;
     margin-bottom: 10px;
-    letter-spacing: -1px;
+    letter-spacing: -0.2px;
 }
 
 .progress-container {
     width: 100%;
-    height: 8px;
+    height: 6px;
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .progress-bar {
     width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, #28cd41, #34c759);
-    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    background: #28cd41;
+    transition: width 1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .widget-hint {
-    font-size: 10px;
-    line-height: 1.4;
-    opacity: 0.7;
+    font-size: 11px;
+    opacity: 0.8;
     margin: 0;
+    font-weight: 400;
 }
 
 /* Completion Modal */
@@ -881,4 +872,117 @@ body, html {
 
 @media (max-width: 1024px) {
     .macos-widget { display: none; } /* Hide on smaller screens to save space */
+}
+
+/* =========================================
+   IOS STYLE CAMERA APP
+   ========================================= */
+.camera-window {
+    width: 500px !important;
+    height: 650px !important;
+    background: #000 !important;
+    border: 1px solid #333 !important;
+}
+
+.camera-header {
+    background: #1a1a1a !important;
+    border-bottom: none !important;
+}
+
+.camera-header .window-title {
+    color: #fff !important;
+}
+
+.camera-content {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    background: #000;
+}
+
+.camera-viewport {
+    flex: 1;
+    position: relative;
+    background: #000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#webcam {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+.camera-ui-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-bottom: 30px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    pointer-events: none;
+}
+
+.camera-modes {
+    display: flex;
+    gap: 15px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #aaa;
+}
+
+.camera-modes span.active {
+    color: #ffcc00; /* Signature iOS Yellow */
+}
+
+.camera-bottom-controls {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    pointer-events: auto;
+}
+
+.shutter-btn {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    background: #fff;
+    padding: 3px;
+    background-clip: content-box;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.shutter-btn:active {
+    transform: scale(0.9);
+}
+
+.thumbnail-preview {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.camera-switch {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
 }

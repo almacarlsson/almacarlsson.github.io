@@ -2,9 +2,8 @@
     0. ANALYTICS & DATA LAYER HELPER
    ========================================= */
 const engagementTasks = [
-    'case1-popup', 'about-me-popup', 'case3-popup', 'case4-popup',
-    'case5-popup', 'case6-popup', 'facetime-video-popup',
-    'tool-camera', 'tool-calculator', 'incoming-call'
+    'sos-trigger', 'seo-cheat-popup', 'lead-magnet', 'incoming-call',
+    'tool-camera', 'tool-calculator', 'case5-popup'
 ];
 let completedTasks = new Set();
 
@@ -21,13 +20,13 @@ function trackEngagement(taskId) {
     const text = document.getElementById('score-text');
     
     if (bar) bar.style.width = score + '%';
-    if (text) text.textContent = score + '%';
+    if (text) text.textContent = score + '% of hidden tasks found';
 
     if (score === 100) {
         setTimeout(() => {
             const modal = document.getElementById('engagement-success-modal');
             if (modal) modal.style.display = 'flex';
-            pushToDataLayer('engagement_milestone', { 'milestone': '100_percent' });
+            pushToDataLayer('engagement_milestone', { 'milestone': '100_percent_hidden' });
         }, 1200);
     }
 }
@@ -91,6 +90,11 @@ function openWindow(id, pushHistory = true) {
         // SPECIAL CASE: FACETIME TIMER
         if (id === 'facetime-video-popup') {
             startFaceTimeTimer();
+        }
+
+        // SPECIAL CASE: START CAMERA
+        if (id === 'camera-popup') {
+            startCamera();
         }
     }
 }
@@ -246,6 +250,20 @@ async function calculateResult() {
    ========================================= */
 let stream = null;
 
+async function startCamera() {
+    const video = document.getElementById('webcam');
+    if (!video) return;
+
+    try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        video.srcObject = stream;
+    } catch (err) {
+        console.warn("Camera access declined or unavailable:", err);
+        // We don't alert() here to keep the experience smooth; 
+        // the user simply sees the placeholder/empty window.
+    }
+}
+
 function stopCamera() {
     const win = document.getElementById('camera-popup');
     if (win) win.style.display = 'none';
@@ -304,6 +322,9 @@ function openSpotifyApp() {
 function showHelp() {
     const help = document.getElementById('help-popup');
     if (help) help.style.display = 'block';
+
+    // TRACK ENGAGEMENT (Hidden Task)
+    trackEngagement('sos-trigger');
 
     // DATA LAYER INTEGRATION (Refactored)
     pushToDataLayer('ui_interaction', {
@@ -370,6 +391,9 @@ function unlockAndCopyPrompt() {
     const btn = document.getElementById('btn-steal-prompt');
     
     if (email.includes('@')) {
+        // TRACK ENGAGEMENT (Hidden Task)
+        trackEngagement('lead-magnet');
+
         // DATA LAYER INTEGRATION (Conversion - Refactored)
         pushToDataLayer('generate_lead', {
             'form_id': 'lead-magnet-form',
