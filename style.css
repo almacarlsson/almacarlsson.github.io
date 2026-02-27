@@ -155,6 +155,7 @@ body, html {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
+    padding-top: 28px; /* Offset for the 28px menu bar */
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(8px);
     z-index: 2000;
@@ -378,6 +379,7 @@ body, html {
     display: flex;
     flex-direction: column;
     background: #1c1c1c;
+    overflow: hidden; /* Prevent scrolling for a native feel */
 }
 
 #calc-display {
@@ -700,7 +702,9 @@ body, html {
    ========================================= */
 .facetime-call-window {
     width: 800px;
+    max-width: 95vw;
     height: 550px;
+    max-height: 95%;
     background: #1a1a1a;
     border: 1px solid #333;
     color: white;
@@ -954,7 +958,9 @@ body, html {
    ========================================= */
 .camera-window {
     width: 500px !important;
+    max-width: 95vw !important;
     height: 650px !important;
+    max-height: 95% !important;
     background: #000 !important;
     border: 1px solid #333 !important;
 }
