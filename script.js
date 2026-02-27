@@ -758,3 +758,48 @@ document.addEventListener('DOMContentLoaded', () => {
         'page_path': window.location.pathname
     });
 });
+
+/* =========================================
+    9. DOG GALLERY (EASTER EGG)
+   ========================================= */
+let dogInterval;
+
+async function fetchDogImage() {
+    const img = document.getElementById('dog-image');
+    if (!img) return;
+    
+    try {
+        const response = await fetch('https://dog.ceo/api/breeds/image/random');
+        const data = await response.json();
+        if (data.status === "success") {
+            img.src = data.message;
+        }
+    } catch (error) {
+        console.error("Error fetching dog image:", error);
+    }
+}
+
+function openDogGallery() {
+    const popup = document.getElementById('dog-gallery-popup');
+    if (popup) {
+        popup.style.display = 'flex';
+        fetchDogImage();
+        // Set interval to fetch new dog every 10 seconds
+        clearInterval(dogInterval);
+        dogInterval = setInterval(fetchDogImage, 10000);
+        
+        // Push interaction to data layer for consistency
+        pushToDataLayer('ui_interaction', {
+            'element': 'trashcan_easter_egg',
+            'action': 'open_dog_gallery'
+        });
+    }
+}
+
+function closeDogGallery() {
+    const popup = document.getElementById('dog-gallery-popup');
+    if (popup) {
+        popup.style.display = 'none';
+        clearInterval(dogInterval);
+    }
+}
